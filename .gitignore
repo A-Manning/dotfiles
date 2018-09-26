@@ -1,5 +1,12 @@
 # exclude everything
 *
 
-# selectively include
+# selectively include below
+
 !.gitignore
+
+# configs
+!.config/
+
+# zsh
+!.zshrc
