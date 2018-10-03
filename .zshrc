@@ -111,6 +111,9 @@ alias fstar='fstar.exe'
 
 # git
 alias gcom='git commit -m'
+alias gpull='git pull'
+alias gpush='git push'
+alias gstat='git status'
 
 # less
 alias less='less -N'
