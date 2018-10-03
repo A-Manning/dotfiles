@@ -100,17 +100,17 @@ source $ZSH/oh-my-zsh.sh
 
 # apt
 alias ad='sudo apt update'
-alias apt-upd='sudo apt update'
 alias ag='sudo apt upgrade'
-alias apt-upg='sudo apt upgrade'
 alias alu='apt list --upgradable'
-alias apt-lu='apt list --upgradable'
 
 # fsharpi
 alias fsi='fsharpi'
 
 # fstar
 alias fstar='fstar.exe'
+
+# git
+alias gcom='git commit -m'
 
 # less
 alias less='less -N'
@@ -134,6 +134,10 @@ function nupack() {
 
 # ps
 alias psg='ps aux | head -1; ps aux | grep'
+
+# opam
+alias od='opam update'
+alias og='opam upgrade'
 
 # -is eval to start zsh with a command
 if [[ $1 == eval ]]
