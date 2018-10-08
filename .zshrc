@@ -106,6 +106,9 @@ alias alu='apt list --upgradable'
 # atom
 alias ab='atom-beta'
 
+# cp
+alias cpr='cp -r'
+
 # fsharpi
 alias fsi='fsharpi'
 
@@ -113,7 +116,10 @@ alias fsi='fsharpi'
 alias fstar='fstar.exe'
 
 # git
+alias gc='git commit'
+alias gcm='git commit -m'
 alias gcom='git commit -m'
+alias gdiff='git diff'
 alias gpull='git pull'
 alias gpush='git push'
 alias gstat='git status'
