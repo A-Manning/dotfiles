@@ -131,6 +131,9 @@ alias less='less -N'
 alias msbd='msbuild /p:Configuration=Debug'
 alias msbr='msbuild /p:Configuration=Release'
 
+# nano
+alias nzsh='nano ~/.zshrc'
+
 # nuget
 function nupack() {
 	if [ "$#" -lt "2" ]
@@ -146,6 +149,13 @@ function nupack() {
 
 # ps
 alias psg='ps aux | head -1; ps aux | grep'
+
+# r
+# This command is dangerous! It has no manpage and does not appear as an alias, so it should be unset
+alias r='echo "This command has been unset in \`~/.zshrc\`."'
+
+# source
+alias szsh="source ~/.zshrc"
 
 # opam
 alias od='opam update'
