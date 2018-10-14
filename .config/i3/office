@@ -56,6 +56,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $sup+q kill
+bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -78,6 +79,11 @@ bindsym $sup+j move left
 bindsym $sup+k move down
 bindsym $sup+i move up
 bindsym $sup+l move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
+
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -156,8 +162,10 @@ bindsym $sup+Mod2+KP_0 move container to workspace 10
 bindsym $sup+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $sup+r restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $sup+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X $sup+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X$sup+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Increase sound volume
 bindsym $mod+equal exec amixer set Master 5%+ \
