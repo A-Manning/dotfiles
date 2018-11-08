@@ -2,12 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ash/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="a-manning"
+
+# Need to set a symlink in $ZSH/custom/themes called theme.zsh-theme
+ZSH_THEME="theme"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -128,7 +130,6 @@ alias fstar='fstar.exe'
 # git
 alias gc='git commit'
 alias gcm='git commit -m'
-alias gcom='git commit -m'
 alias gdiff='git diff'
 alias gpull='git pull'
 alias gpush='git push'
@@ -159,7 +160,7 @@ alias r='echo "This command has been unset in \`~/.zshrc\`."'
 alias rst="reset"
 
 # rm
-alias rmr='rm -r' 
+alias rmr='rm -r'
 
 # source
 alias szsh="source ~/.zshrc"
