@@ -63,6 +63,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   colored-man-pages
   cp
+  completions
   extract
   git
   history
@@ -72,6 +73,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# load completions
+autoload -U compinit && compinit
 
 # mouse on
 # zle-toggle-mouse
@@ -148,6 +152,9 @@ alias nzsh='nano ~/.zshrc'
 # opam
 alias od='opam update'
 alias og='opam upgrade'
+
+# paket
+alias paket='.paket/paket.exe'
 
 # ps
 alias psg='ps aux | head -1; ps aux | grep'
