@@ -64,10 +64,15 @@ plugins=(
   extract
   git
   history
+  #mouse
+  nuget
   per-directory-history
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# mouse on
+# zle-toggle-mouse
 
 # User configuration
 
@@ -106,6 +111,11 @@ alias alu='apt list --upgradable'
 # atom
 alias ab='atom-beta'
 
+# chmod
+alias chmodr='chmod +r'
+alias chmodw='chmod +w'
+alias chmodx='chmod +x'
+
 # cp
 alias cpr='cp -r'
 
@@ -134,18 +144,9 @@ alias msbr='msbuild /p:Configuration=Release'
 # nano
 alias nzsh='nano ~/.zshrc'
 
-# nuget
-function nupack() {
-	if [ "$#" -lt "2" ]
-	then
-	    echo "Must provide at least 2 args.\nUsage: nupack <nuspec | project> <outputDirectory> [options].\n See \`nuget help pack\` for more details."
-	    1
-	else
-        local Command="nuget pack $1 -OutputDirectory $2 ${@:3}"
-        echo "alias: $Command"
-        eval $Command
-	fi
-}
+# opam
+alias od='opam update'
+alias og='opam upgrade'
 
 # ps
 alias psg='ps aux | head -1; ps aux | grep'
@@ -154,12 +155,17 @@ alias psg='ps aux | head -1; ps aux | grep'
 # This command is dangerous! It has no manpage and does not appear as an alias, so it should be unset
 alias r='echo "This command has been unset in \`~/.zshrc\`."'
 
+# reset
+alias rst="reset"
+
+# rm
+alias rmr='rm -r' 
+
 # source
 alias szsh="source ~/.zshrc"
 
-# opam
-alias od='opam update'
-alias og='opam upgrade'
+# thanks
+alias thanks="echo \"You're welcome!\""
 
 # -is eval to start zsh with a command
 if [[ $1 == eval ]]

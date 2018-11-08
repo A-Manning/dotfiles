@@ -225,6 +225,9 @@ focus_on_window_activation urgent
 # Disable window titlebars so that i3-gaps will work
 for_window [class="^.*"] border pixel 1
 
+# Calculator should open floating
+for_window [title="Calculator"] floating enable
+
 # Set gaps
 gaps inner 10
 gaps outer 0
