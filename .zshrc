@@ -112,10 +112,12 @@ autoload -U compinit && compinit
 # apt
 alias ad='sudo apt update'
 alias ag='sudo apt upgrade'
+alias ai='sudo apt install'
 alias alu='apt list --upgradable'
 
 # atom
 alias ab='atom-beta'
+alias ab.='atom-beta .'
 
 # chmod
 alias chmodr='chmod +r'
@@ -124,6 +126,9 @@ alias chmodx='chmod +x'
 
 # cp
 alias cpr='cp -r'
+
+# dpkg
+alias dpkgi='sudo dpkg -i'
 
 # fsharpi
 alias fsi='fsharpi'
