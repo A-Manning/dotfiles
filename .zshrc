@@ -160,6 +160,8 @@ alias og='opam upgrade'
 
 # paket
 alias paket='.paket/paket.exe'
+alias paketx='chmod +x .paket/paket.exe'
+alias paketbs='mv .paket/paket.bootstrapper.exe .paket/paket.exe'
 
 # ps
 alias psg='ps aux | head -1; ps aux | grep'
@@ -186,3 +188,12 @@ then
     "$@"
 set --
 fi
+
+# Disable dotnet telemetry
+DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+# opam configuration
+test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# Don't write command history if there is a preceding space in the command
+setopt hist_ignore_space
