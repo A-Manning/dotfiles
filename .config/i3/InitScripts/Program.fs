@@ -70,6 +70,9 @@ let execChromium() =
     let args = tabs |> String.concat " "
     exec ^ sprintf "exec chromium-browser %s" args
 
+let execNitrogen() =
+    exec "nitrogen --restore"
+
 let initLeft(): unit =
     focusOutput "HDMI-A-0"
     log "focused HDMI-A-0"
@@ -194,7 +197,9 @@ let initRight(): unit =
     log "finished init right"
 
 [<EntryPoint>]
-let main = function
+let main argv =
+    execNitrogen();
+    match argv with
     | [|"Left"|]  ->
         initLeft()
         0
