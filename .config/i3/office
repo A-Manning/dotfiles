@@ -136,6 +136,17 @@ bindsym $sup+8 move container to workspace 8
 bindsym $sup+9 move container to workspace 9
 bindsym $sup+0 move container to workspace 10
 
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
 # Numpad bindings
 bindsym $mod+Mod2+KP_1 workspace 1
 bindsym $mod+Mod2+KP_2 workspace 2
@@ -161,9 +172,12 @@ bindsym $sup+Mod2+KP_0 move container to workspace 10
 
 # reload the configuration file
 bindsym $sup+c reload
+bindsym #mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $sup+r restart
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $sup+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
