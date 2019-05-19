@@ -250,6 +250,7 @@ bar {
     output primary
     tray_output primary
     tray_padding 2
+    # verbose yes
     colors {
         separator $cyant
         background $trans
@@ -288,7 +289,7 @@ client.unfocused        $cyant $trans  $cyan2t  $cyan     $cyant
 exec compton --config ~/.config/compton/compton.conf
 
 # Configure xrandr
-exec --no-startup-id xrandr --output eDP-1-1 --primary
+exec --no-startup-id xrandr --output eDP-1 --primary
 
 # Start audio applet
 exec --no-startup-id pasystray
