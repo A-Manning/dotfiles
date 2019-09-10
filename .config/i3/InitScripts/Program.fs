@@ -53,11 +53,7 @@ let tabs = [
     "functionalprogramming.slack.com";
     "github.com/FStarLang/FStar";
     "gitlab.com/zenprotocol";
-    "4chan.org/biz";
     "coinmarketcap.com";
-    "twitter.com/PillageCapital";
-    "twitter.com/PillageTrades";
-    "mail.yahoo.com"
 ]
 let execTerm (cmd: string) =
     exec ^ sprintf "gnome-terminal --execute zsh -is eval '%s'" cmd
