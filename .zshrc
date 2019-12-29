@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -116,8 +117,9 @@ alias ai='sudo apt install'
 alias alu='apt list --upgradable'
 
 # atom
-alias ab='atom-beta'
-alias ab.='atom-beta .'
+alias ab='atom-beta -n'
+alias ab.='atom-beta -n .'
+alias abe='atom-beta' #use existing instance
 
 # chmod
 alias chmodr='chmod +r'
@@ -137,9 +139,15 @@ alias fsi='fsharpi'
 alias fstar='fstar.exe'
 
 # git
+alias gaa='git add -A' #git add all tracked and untracked files
+alias gat='git add -u' #git add all tracked files
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gdiff='git diff'
+alias glf='git ls-files' #git list files
+alias glfd='git ls-files --deleted' #gld deleted
+alias glfm='git ls-files --modified' #glf modified
+alias glfu='git ls-files --others --exclude-standard' #glf untracked
 alias gpull='git pull'
 alias gpush='git push'
 alias gstat='git status'
@@ -153,6 +161,9 @@ alias msbr='msbuild /p:Configuration=Release'
 
 # nano
 alias nzsh='nano ~/.zshrc'
+
+# ocamlformat
+alias ofi='ocamlformat --inplace'
 
 # opam
 alias od='opam update'
@@ -197,3 +208,8 @@ test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /de
 
 # Don't write command history if there is a preceding space in the command
 setopt hist_ignore_space
+
+# nvm config
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,0 +1,5 @@
+keycode 66 = Mode_switch Mode_switch Mode_switch
+keysym j = j J Left 
+keysym l = l L Right
+keysym i = i I Up
+keysym k = k K Down

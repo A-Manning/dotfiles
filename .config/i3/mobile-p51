@@ -286,7 +286,7 @@ client.focused_inactive $cyant $trans  $cyan2   $cyan     $cyant
 client.unfocused        $cyant $trans  $cyan2t  $cyan     $cyant
 
 # Start Compton
-exec compton --config ~/.config/compton/compton.conf
+exec compton --config /home/ash/.config/compton/compton.conf
 
 # Configure xrandr
 exec --no-startup-id xrandr --output eDP-1 --primary
@@ -298,13 +298,13 @@ exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 
 # Set background
-exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --restore
 
 # Load xmodmap
-exec_always --no-startup-id xmodmap ~/.config/.xmodmap
+exec_always --no-startup-id xmodmap /home/ash/.config/.xmodmap
 
 # Set up xbindkeys
-exec --no-startup-id xbindkeys
+# exec --no-startup-id xbindkeys
 
 # Activate numlock by default
 exec --no-startup-id numlockx on
@@ -317,3 +317,6 @@ exec --no-startup-id udiskie -sN &
 
 # Start redshift
 exec --no-startup-id redshift-gtk
+
+# Needed for nvidia-prime
+exec --no-startup-id lxpolkit
