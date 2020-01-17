@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
+# export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -80,6 +81,9 @@ autoload -U compinit && compinit
 
 # mouse on
 # zle-toggle-mouse
+
+# per-directory-history
+setopt hist_ignore_space
 
 # User configuration
 
@@ -200,16 +204,21 @@ then
 set --
 fi
 
-# Disable dotnet telemetry
+## Configuration commands
+
+# cabal
+export PATH=$HOME/.cabal/bin:$PATH
+
+# cargo
+export PATH=$HOME/.cargo/bin:$PATH
+
+# dotnet
 DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-# opam configuration
-test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# Don't write command history if there is a preceding space in the command
-setopt hist_ignore_space
-
-# nvm config
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# opam 
+test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
