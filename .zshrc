@@ -152,6 +152,7 @@ alias glf='git ls-files' #git list files
 alias glfd='git ls-files --deleted' #gld deleted
 alias glfm='git ls-files --modified' #glf modified
 alias glfu='git ls-files --others --exclude-standard' #glf untracked
+alias gpsu='git push --set-upstream'
 alias gpull='git pull'
 alias gpush='git push'
 alias gstat='git status'
