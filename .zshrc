@@ -122,14 +122,14 @@ alias ai='sudo apt install'
 alias alu='apt list --upgradable'
 
 # atom
-alias ab='atom-beta -n'
+alias -g ab='atom-beta -n'
 alias ab.='atom-beta -n .'
 alias abe='atom-beta' #use existing instance
 
 # chmod
 alias chmodr='chmod +r'
 alias chmodw='chmod +w'
-alias chmodx='chmod +x'
+alias -g chmodx='chmod +x'
 
 # cp
 alias cpr='cp -r'
@@ -144,11 +144,12 @@ alias fsi='fsharpi'
 alias fstar='fstar.exe'
 
 # git
+alias -g ga='git add'
 alias gaa='git add -A' #git add all tracked and untracked files
 alias gat='git add -u' #git add all tracked files
 alias gc='git commit'
 alias gcm='git commit -m'
-alias gdiff='git diff'
+alias -g gdiff='git diff'
 alias glf='git ls-files' #git list files
 alias glfd='git ls-files --deleted' #gld deleted
 alias glfm='git ls-files --modified' #glf modified
@@ -159,7 +160,8 @@ alias gpush='git push'
 alias gstat='git status'
 
 # less
-alias less='less -N'
+alias -g less='less -N'
+alias -g lessq='less'
 
 # msbuild
 alias msbd='msbuild /p:Configuration=Debug'
@@ -169,7 +171,7 @@ alias msbr='msbuild /p:Configuration=Release'
 alias nzsh='nano ~/.zshrc'
 
 # ocamlformat
-alias ofi='ocamlformat --inplace'
+alias -g ofi='ocamlformat --inplace'
 
 # opam
 alias od='opam update'
@@ -199,6 +201,10 @@ alias szsh="source ~/.zshrc"
 # thanks
 alias thanks="echo \"You're welcome!\""
 
+# xargs
+# quotes each line of a multi-line command output
+alias -g xquote="xargs -d'\n' printf '%q\n'"
+
 # -is eval to start zsh with a command
 if [[ $1 == eval ]]
 then
@@ -224,3 +230,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # opam
 test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# pyenv
+export PATH="/home/ash/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## Keybindings
+
+# bindkey "^K" kill-line
