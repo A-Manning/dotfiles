@@ -3,3 +3,6 @@ keysym j = j J Left
 keysym l = l L Right
 keysym i = i I Up
 keysym k = k K Down
+
+keysym u = u U Home
+keysym o = o O End
