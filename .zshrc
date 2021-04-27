@@ -65,14 +65,14 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   colored-man-pages
   cp
-  completions
+  #completions
   extract
   git
   history
   #mouse
-  nuget
+  #nuget
   per-directory-history
-  tv
+  #tv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -239,3 +239,5 @@ eval "$(pyenv virtualenv-init -)"
 ## Keybindings
 
 # bindkey "^K" kill-line
+
+export PATH="$HOME/.poetry/bin:$PATH"
