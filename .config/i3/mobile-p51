@@ -286,7 +286,7 @@ client.focused_inactive $cyant $trans  $cyan2   $cyan     $cyant
 client.unfocused        $cyant $trans  $cyan2t  $cyan     $cyant
 
 # Start Compton
-exec compton --config /home/ash/.config/compton/compton.conf
+exec_always --no-startup-id pkill compton; compton --config /home/ash/.config/compton/compton.conf
 
 # Configure xrandr
 exec --no-startup-id xrandr --output eDP-1 --primary
