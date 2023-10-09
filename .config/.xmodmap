@@ -6,3 +6,9 @@ keysym k = k K Down
 
 keysym u = u U Home
 keysym o = o O End
+
+keysym p = p P Page_Up
+keysym semicolon = semicolon colon Page_Down 
+
+keysym y = y Y Page_Up
+keysym h = h H Page_Down

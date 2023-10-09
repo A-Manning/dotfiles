@@ -31,7 +31,7 @@ ZSH_THEME="theme"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -63,6 +63,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  asdf
   colored-man-pages
   cp
   #completions
@@ -131,11 +132,20 @@ alias chmodr='chmod +r'
 alias chmodw='chmod +w'
 alias -g chmodx='chmod +x'
 
+# clear cache
+alias -g clear_ram_cache="sh -c 'sync; echo 1 > /proc/sys/vm/drop_caches'"
+
+# coins
+alias coins="curl \"https://plaintextco.in/?term=true&per_page=10\""
+
 # cp
 alias cpr='cp -r'
 
 # dpkg
 alias dpkgi='sudo dpkg -i'
+
+# filesystem age
+alias -g fsage="dumpe2fs $(mount | grep 'on \/ ' | awk '{print $1}') | grep 'Filesystem created:'"
 
 # fsharpi
 alias fsi='fsharpi'
@@ -162,6 +172,9 @@ alias gstat='git status'
 # less
 alias -g less='less -N'
 alias -g lessq='less'
+
+# micro
+alias mzsh='micro ~/.zshrc'
 
 # msbuild
 alias msbd='msbuild /p:Configuration=Debug'
@@ -201,6 +214,9 @@ alias szsh="source ~/.zshrc"
 # thanks
 alias thanks="echo \"You're welcome!\""
 
+# weather
+alias weather="curl \"wttr.in/Taipei\""
+
 # xargs
 # quotes each line of a multi-line command output
 alias -g xquote="xargs -d'\n' printf '%q\n'"
@@ -231,6 +247,9 @@ export NVM_DIR="$HOME/.nvm"
 # opam
 test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
 # pyenv
 export PATH="/home/ash/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
@@ -240,4 +259,5 @@ eval "$(pyenv virtualenv-init -)"
 
 # bindkey "^K" kill-line
 
-export PATH="$HOME/.poetry/bin:$PATH"
+
+[ -f "/home/ash/.ghcup/env" ] && source "/home/ash/.ghcup/env" # ghcup-env

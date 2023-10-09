@@ -247,9 +247,57 @@ bar {
     # Transparency
     i3bar_command i3bar -t
     status_command i3blocks -c ~/.config/i3blocks/config
-    output primary
+    output eDP-1
+    output eDP-1-1
     tray_output primary
+    tray_output none
     tray_padding 2
+    font pango:Ubuntu Mono Regular 14
+    # verbose yes
+    colors {
+        separator $cyant
+        background $trans
+        #                 border background text
+        focused_workspace $trans $trans  $green2
+        active_workspace  $trans $trans  $cyan2t
+    }
+}
+
+bar {
+    # Transparency
+    i3bar_command i3bar -t
+    status_command i3blocks -c ~/.config/i3blocks/config
+    output DP-1-0.1
+    output DP-0.1
+    output DP-3
+    tray_output DP-1-0.1
+    tray_output DP-0.1
+    tray_output DP-3
+	# tray_output eDP-1.1
+    #tray_output none
+    tray_padding 2
+    font pango:Ubuntu Mono Regular 15
+    # verbose yes
+    colors {
+        separator $cyant
+        background $trans
+        #                 border background text
+        focused_workspace $trans $trans  $green2
+        active_workspace  $trans $trans  $cyan2t
+    }
+}
+
+bar {
+    # Transparency
+    i3bar_command i3bar -t
+    # status_command i3blocks -c ~/.config/i3blocks/config
+    output DP-1-0.2
+    output DP-0.2
+    #tray_output DP-1-0.2
+    #tray_output DP-0.2
+    tray_output none
+    tray_padding 2
+    font pango:Ubuntu Mono Regular 15
     # verbose yes
     colors {
         separator $cyant
@@ -316,7 +364,7 @@ exec --no-startup-id unclutter &
 exec --no-startup-id udiskie -sN &
 
 # Start redshift
-exec --no-startup-id redshift-gtk
+# exec --no-startup-id redshift-gtk
 
 # Needed for nvidia-prime
 exec --no-startup-id lxpolkit

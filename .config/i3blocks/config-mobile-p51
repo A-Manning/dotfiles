@@ -92,11 +92,11 @@ interval=10
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
+#[cpu_usage]
 #label=CPU
-interval=5
-markup=pango
-command=~/GitHub/i3blocks-multicore/multicore.exe
+#interval=5
+#markup=pango
+#command=~/GitHub/i3blocks-multicore/multicore.exe
 # min_width=CPU 99.99%
 # separator=false
 
