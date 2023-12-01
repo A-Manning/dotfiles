@@ -1,0 +1,73 @@
+;; kmonad configuration example
+
+(defsrc
+  esc f1 f2 f3 f4  f5 f6 f7 f8  f9 f10 f11 f12  home end ins del kpequal kpleftparen kprightparen bspc
+  grv 1  2  3  4  5  6  7  8  9  0  min eql bspc                 nlck    kp/         kp*          kp- 
+  tab  q  w  e  r  t  y  u  i  o  p  lbrc rbrc bksl              kp7     kp8         kp9
+  caps a  s  d  f  g  h  j  k  l  scln apos ent                  kp4     kp5         kp6          kp+
+  lsft z  x  c  v  b  n  m  comm  dot / rsft                     kp1     kp2         kp3 
+  lctl lmet lalt spc ralt rmet cmps rctl pgup up   pgdn               kp0            kp.          kprt  
+                                         left down rght
+)
+
+(defalias
+  nav (layer-toggle navigation)
+)
+
+;; First layer is the startup layer
+(deflayer default
+  esc f1 f2 f3 f4  f5 f6 f7 f8  f9 f10 f11 f12  home end ins del kpequal kpleftparen kprightparen bspc
+  grv 1  2  3  4  5  6  7  8  9  0  min eql bspc                 nlck    kp/         kp*          kp- 
+  tab  q  w  e  r  t  y  u  i  o  p  lbrc rbrc bksl              kp7     kp8         kp9
+  @nav a  s  d  f  g  h  j  k  l  scln apos ent                  kp4     kp5         kp6          kp+
+  lsft z  x  c  v  b  n  m  comm  dot / rsft                     kp1     kp2         kp3 
+  lctl lmet lalt spc ralt rmet cmps rctl pgup up   pgdn               kp0            kp.          kprt  
+                                         left down rght
+)
+
+;; Navigation layer
+(deflayer navigation
+;; esc f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 home end ins del kpequal kpleftparen kprightparen bspc
+   XX  XX XX XX XX XX XX XX XX XX XX  XX  XX  XX   XX  XX  XX  XX      XX          XX           XX
+;; grv 1  2  3  4  5  6  7  8  9  0  min eql bspc              nlck    kp/         kp*          kp-
+   XX  XX XX XX XX XX XX XX XX XX XX XX  XX  del               XX      XX          XX           XX
+;; tab q  w  e  r  t  y    u    i  o   p    lbrc rbrc bksl     kp7     kp8         kp9
+   XX  XX XX XX XX XX pgup home up end pgup XX   XX   XX       XX      XX          XX
+;; caps a  s  d  f  g  h    j    k    l     scln apos ent      kp4     kp5         kp6          kp+
+   _    XX XX XX XX XX pgdn left down right pgdn XX   XX       XX      XX          XX           XX
+;; lsft z  x  c  v  b  n  m  comm dot /  rsft                  kp1     kp2         kp3
+   XX   XX XX XX XX XX XX XX XX   XX  XX XX                    XX      XX          XX
+;; lctl lmet lalt spc ralt rmet cmps rctl pgup up   pgdn            kp0            kp.          kprt
+   XX   XX   XX   XX  XX   XX   XX   XX   XX   XX   XX              XX             XX           XX
+;;                                        left down rght
+                                          XX   XX   XX
+)
+
+;; This layer has no customization. It should be equivalent to the built-in mapping.
+(deflayer vanilla
+  esc f1 f2 f3 f4  f5 f6 f7 f8  f9 f10 f11 f12  home end ins del kpequal kpleftparen kprightparen bspc
+  grv 1  2  3  4  5  6  7  8  9  0  min eql bspc                 nlck    kp/         kp*          kp- 
+  tab  q  w  e  r  t  y  u  i  o  p  lbrc rbrc bksl              kp7     kp8         kp9
+  caps a  s  d  f  g  h  j  k  l  scln apos ent                  kp4     kp5         kp6          kp+
+  lsft z  x  c  v  b  n  m  comm  dot / rsft                     kp1     kp2         kp3 
+  lctl lmet lalt spc ralt rmet cmps rctl pgup up   pgdn               kp0            kp.          kprt  
+                                         left down rght
+)
+
+;; This layer does nothing. It is useful as a template for other layers.
+(deflayer ghost
+;; esc f1 f2 f3 f4  f5 f6 f7 f8 f9 f10 f11 f12  home end ins del kpequal kpleftparen kprightparen bspc
+    _  _  _  _  _   _  _  _  _  _  _   _   _    _    _   _   _   _       _           _            _
+;; grv 1  2  3  4  5  6  7  8  9  0  min eql bspc                 nlck   kp/         kp*          kp-
+   _   _  _  _  _  _  _  _  _  _  _  _   _   _                    _      _           _            _
+;; tab  q  w  e  r  t  y  u  i  o  p  lbrc rbrc bksl              kp7    kp8         kp9
+   _    _  _  _  _  _  _  _  _  _  _  _    _    _                 _      _           _
+;; caps a  s  d  f  g  h  j  k  l  scln apos ent                  kp4    kp5         kp6          kp+
+   _    _  _  _  _  _  _  _  _  _  _    _    _                    _      _           _            _
+;; lsft z  x  c  v  b  n  m  comm  dot / rsft                     kp1    kp2         kp3
+   _    _  _  _  _  _  _  _  _     _   _ _                        _      _           _
+;; lctl lmet lalt spc ralt rmet cmps rctl pgup up   pgdn             kp0             kp.          kprt
+   _    _    _    _   _    _    _    _    _    _    _                _               _            _
+;;                                        left down rght
+                                          _    _    _
+)
