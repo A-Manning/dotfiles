@@ -43,6 +43,7 @@ in
 
   home.packages = with pkgs; [
     appimage-run
+    brightnessctl
     btop
     direnv
     discord
@@ -207,6 +208,10 @@ in
           interval = 1;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
         };
+        tray = {
+          reverse-direction = true;
+          spacing = 8;
+        };
         wireplumber = {
           format = " {volume}%";
           format-muted = " MUTE";
@@ -246,8 +251,28 @@ in
   	theme = "robbyrussell";
   };
 
-  # Direnv wrapper 
-  services.lorri.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+  };
+
+  services = {
+    avizo = {
+      enable = true;
+      settings = {
+        default = {
+          time = 1.5;
+          y-offset = 0.4;
+        };
+      };
+    };
+    # Direnv wrapper
+    lorri.enable = true;
+  };
 
   # Enable Sway
   wayland.windowManager.sway = sway-config;

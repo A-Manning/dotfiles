@@ -105,6 +105,10 @@
         "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
         # Volume up
         "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+        # Brightness down
+        "XF86MonBrightnessDown" = "exec lightctl down";
+        # Brightness down
+        "XF86MonBrightnessUp" = "exec lightctl up";
       };
     startup = [
       # xdg-desktop-portal-gnome is broken, do not use
@@ -113,6 +117,7 @@
       { command = "systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP"; }
       { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
       { command = "nm-applet"; }
+      { command = "avizo-service"; }
     ];
     window = {
       # hideEdgeBorders = "--i3 smart";
