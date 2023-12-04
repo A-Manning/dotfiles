@@ -99,6 +99,12 @@
         # reload sway inplace (preserves your layout/session, can be used to upgrade i3)
         "${sup}+r" = "reload";
         "${mod}+Shift+r" = "reload";
+        # Mute key
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        # Volume down
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        # Volume up
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
       };
     startup = [
       # xdg-desktop-portal-gnome is broken, do not use

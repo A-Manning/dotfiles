@@ -1,4 +1,4 @@
-{config, lib, pkgs, system, vscode-extensions, ...}:
+{config, lib, pkgs, system, vscode-extensions, waybar-style, ...}:
 
 
 let
@@ -46,6 +46,8 @@ in
     btop
     direnv
     discord
+    fira
+    fira-code
     font-awesome
     font-awesome_5
     git
@@ -170,7 +172,7 @@ in
           format-charging = "charging {capacity}%";
           format-discharging = "discharging {capacity}%";
           format-plugged = "plugged {capacity}%";
-          format-full = "<span color='#ecc6d9' font_desc='Font Awesome 6 Free'><i class='fa-solid fa-plug-circle-check'></i>100%</span> 100%";
+          format-full = " 100%";
         };
         clock = {
           actions = {
@@ -198,9 +200,14 @@ in
           interval = 1;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
         };
+        wireplumber = {
+          format = " {volume}%";
+          format-muted = " MUTE";
+          on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        };
         layer = "bottom";
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "battery" "tray" "clock" ];
+        modules-right = [ "wireplumber" "battery" "tray" "clock" ];
         position = "bottom";
         "sway/workspaces" = {
           disable-scroll = true;
@@ -208,6 +215,7 @@ in
         };
       };
     };
+    style = waybar-style;
   };
 
   # Zsh

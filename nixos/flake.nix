@@ -8,8 +8,12 @@
     };
     nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    waybar-style = {
+      flake = false;
+      url = "path:./waybar-style.css"; 
+    };
   };
-  outputs = { self, home-manager, kmonad, kmonad-config, nixpkgs, vscode-extensions, ... }@inputs:
+  outputs = { self, home-manager, kmonad, kmonad-config, nixpkgs, vscode-extensions, waybar-style, ... }@inputs:
   {  
     nixosConfigurations = {
       "ash-thinkpad-p16v" = let system = "x86_64-linux"; in nixpkgs.lib.nixosSystem {
@@ -36,6 +40,8 @@
             fonts = {
               enableDefaultPackages = true;
               packages = with pkgs; [
+                fira
+                fira-code
                 font-awesome
                 font-awesome_5
               ];
@@ -54,7 +60,7 @@
             home-manager.users.ash = { config, lib, pkgs, ... }: {
               imports = [
                 (import ./ash-home.nix {
-                  inherit config lib pkgs system vscode-extensions;
+                  inherit config lib pkgs system vscode-extensions waybar-style;
                 })
               ];
               # The state version is required and should stay at the version you

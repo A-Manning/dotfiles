@@ -156,7 +156,8 @@
         "kmonad": "kmonad",
         "kmonad-config": "kmonad-config",
         "nixpkgs": "nixpkgs_3",
-        "vscode-extensions": "vscode-extensions"
+        "vscode-extensions": "vscode-extensions",
+        "waybar-style": "waybar-style"
       }
     },
     "systems": {
@@ -192,6 +193,19 @@
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
         "type": "github"
+      }
+    },
+    "waybar-style": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Jngm5V9Y4hh+e0xMH04ka/EDYjKGSvwyPfjTQg5fE3o=",
+        "path": "./waybar-style.css",
+        "type": "path"
+      },
+      "original": {
+        "path": "./waybar-style.css",
+        "type": "path"
       }
     }
   },
