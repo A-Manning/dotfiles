@@ -47,10 +47,12 @@ in
     direnv
     discord
     font-awesome
+    font-awesome_5
     git
     google-chrome
     htop
     neofetch
+    networkmanagerapplet
     nix-prefetch-git
     nushell
     oh-my-zsh
@@ -156,6 +158,55 @@ in
       "rust-analyzer.procMacro.enable" = false;
       "window.menuBarVisibility" = "toggle";
       "workbench.colorTheme" = "Activate UMBRA protocol";
+    };
+  };
+
+  # Waybar
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        battery = {
+          format-charging = "charging {capacity}%";
+          format-discharging = "discharging {capacity}%";
+          format-plugged = "plugged {capacity}%";
+          format-full = "<span color='#ecc6d9' font_desc='Font Awesome 6 Free'><i class='fa-solid fa-plug-circle-check'></i>100%</span> 100%";
+        };
+        clock = {
+          actions = {
+            on-click-backward = "tz_down";
+            on-click-forward = "tz_up";
+            on-click-right = "mode";
+            on-scroll-down = "shift_down";
+            on-scroll-up = "shift_up";
+          };
+          calendar = {
+            mode = "year";
+            mode-mon-col = 2;
+            weeks-pos = "right";
+            on-scroll = 1;
+            on-click-right = "mode";
+            format = {
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              months = "<span color='#ffead3'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b>{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+            };
+          };
+          format = "{:%H:%M:%S}";
+          interval = 1;
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+        };
+        layer = "bottom";
+        modules-left = [ "sway/workspaces" ];
+        modules-right = [ "battery" "tray" "clock" ];
+        position = "bottom";
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+      };
     };
   };
 

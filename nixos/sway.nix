@@ -106,6 +106,7 @@
       # { command = "systemctl --user mask xdg-desktop-portal-gnome"; }
       { command = "systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP"; }
       { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
+      { command = "nm-applet"; }
     ];
     window = {
       # hideEdgeBorders = "--i3 smart";

@@ -32,6 +32,15 @@
   	          zsh
             ];
 
+            # Fonts
+            fonts = {
+              enableDefaultPackages = true;
+              packages = with pkgs; [
+                font-awesome
+                font-awesome_5
+              ];
+            };
+
             # needed for Ledger
             # groups.plugdev = {};
 
