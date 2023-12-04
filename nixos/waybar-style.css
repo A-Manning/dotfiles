@@ -88,6 +88,22 @@ button:hover {
   font-size:16px;
 }
 
-#battery.charging, #battery.plugged, #battery.full {
+#battery {
+  font-family: "FiraCode Nerd Font";
+}
+
+#battery.discharging.critical {
+  border-top: 2px solid #ff0000;
+}
+
+#battery.discharging.warning {
+  border-top: 2px solid #ff8800;
+}
+
+#battery.discharging.early-warning {
+  border-top: 2px solid #ffff00;
+}
+
+#battery.discharging.healthy, #battery.full {
   border-top: 2px solid #00ff00;
 }

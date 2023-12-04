@@ -44,6 +44,7 @@
                 fira-code
                 font-awesome
                 font-awesome_5
+                (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
               ];
             };
 

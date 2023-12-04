@@ -178,9 +178,18 @@ in
       mainBar = {
         battery = {
           format-charging = "charging {capacity}%";
-          format-discharging = "discharging {capacity}%";
+          format-discharging-healthy = "󱊣 {capacity}%";
+          format-discharging-early-warning = "󱊢 {capacity}%";
+          format-discharging-warning = "󱊡 {capacity}%";
+          format-discharging-critical = "󱃍 {capacity}%";
           format-plugged = "plugged {capacity}%";
           format-full = " 100%";
+          states = {
+            healthy = 100;
+            early-warning = 45;
+            warning = 30;
+            critical = 15;
+          };
         };
         clock = {
           actions = {
