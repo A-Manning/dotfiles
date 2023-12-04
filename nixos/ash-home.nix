@@ -58,10 +58,15 @@ in
     nix-prefetch-git
     nushell
     oh-my-zsh
+    qbittorrent
     rustup
     telegram-desktop
+    typst
+    typstfmt
+    typst-lsp
     vscodium
     waybar
+    zstd
   ];
 
   # Cursor
@@ -140,9 +145,11 @@ in
         vscode-marketplace.canadaduane.vscode-kmonad
         vscode-marketplace.juanblanco.solidity
         vscode-marketplace.max-ss.cyberpunk
+        vscode-marketplace.nvarner.typst-lsp
         vscode-marketplace.rust-lang.rust-analyzer
         vscode-marketplace.tamasfe.even-better-toml
         vscode-marketplace.thenuprojectcontributors.vscode-nushell-lang
+        vscode-marketplace.tomoki1207.pdf
       ];
     keybindings = [
       {
