@@ -53,6 +53,7 @@ in
     font-awesome_5
     git
     google-chrome
+    helvum
     htop
     mpv
     neofetch
@@ -250,6 +251,7 @@ in
         wireplumber = {
           format = " {volume}%";
           format-muted = " MUTE";
+          on-click = "helvum";
           on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
         layer = "bottom";
