@@ -54,6 +54,7 @@ in
     git
     google-chrome
     htop
+    mpv
     neofetch
     networkmanagerapplet
     nix-prefetch-git
@@ -67,6 +68,7 @@ in
     typst-lsp
     vscodium
     waybar
+    wttrbar
     zstd
   ];
 
@@ -161,6 +163,10 @@ in
     mutableExtensionsDir = false;
     package = pkgs.vscodium;
     userSettings = {
+      "editor.fontFamily" =
+        "'Fira Code', 'Font Awesome 6 Free', 'FiraCode Nerd Font'";
+      "editor.fontLigatures" = true;
+      "editor.fontSize" = 16;
       "rust-analyzer.imports.merge.glob" = false;
       "rust-analyzer.inlayHints.chainingHints.enable" = false;
       "rust-analyzer.inlayHints.parameterHints.enable" = false;
@@ -177,7 +183,10 @@ in
     settings = {
       mainBar = {
         battery = {
-          format-charging = "charging {capacity}%";
+          format-charging-healthy = "󱊦 {capacity}%";
+          format-charging-early-warning = "󱊥 {capacity}%";
+          format-charging-warning = "󱊤 {capacity}%";
+          format-charging-critical = "󰢟 {capacity}%";
           format-discharging-healthy = "󱊣 {capacity}%";
           format-discharging-early-warning = "󱊢 {capacity}%";
           format-discharging-warning = "󱊡 {capacity}%";
@@ -217,6 +226,23 @@ in
           interval = 1;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
         };
+        "custom/weather" = {
+          exec = "wttrbar --location Taipei";
+          format = "{}°C";
+          return-type = "json";
+        };
+        "temperature#cpu" = {
+          format = " {temperatureC}°C";
+          hwmon-path = "/sys/class/hwmon/hwmon4/temp1_input";
+        };
+        "temperature#gpu" = {
+          format = "󰢮 {temperatureC}°C";
+          hwmon-path = "/sys/class/hwmon/hwmon8/temp1_input";
+        };
+        "temperature#nvme1" = {
+          format = " {temperatureC}°C";
+          hwmon-path = "/sys/class/hwmon/hwmon0/temp1_input";
+        };
         tray = {
           reverse-direction = true;
           spacing = 8;
@@ -228,7 +254,8 @@ in
         };
         layer = "bottom";
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "wireplumber" "battery" "tray" "clock" ];
+        # modules-center = [ "temperature" ];
+        modules-right = [ "temperature#cpu" "temperature#nvme1" "wireplumber" "battery" "tray" "custom/weather" "clock" ];
         position = "bottom";
         "sway/workspaces" = {
           disable-scroll = true;
@@ -264,8 +291,8 @@ in
     enable = true;
     platformTheme = "qtct";
     style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
+      name = "breeze-dark";
+      package = pkgs.libsForQt5.breeze-qt5;
     };
   };
 

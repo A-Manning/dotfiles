@@ -199,7 +199,7 @@
       "flake": false,
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-SoUHos1zd1edDl+Q+SCZHSBWvJGeXNe43WYTQI3dQEw=",
+        "narHash": "sha256-K2dOpTZEBx+ZF5qRTGvGrvr7gCG1rJ8Qoleb5vdkJtg=",
         "path": "./waybar-style.css",
         "type": "path"
       },

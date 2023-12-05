@@ -65,7 +65,7 @@ button:hover {
   background-color: #eb4d4b;
 }
 
-#clock, #battery, #tray, #wireplumber {
+#clock, #custom-weather, #battery, #temperature, #tray, #wireplumber {
   border: none;
   border-radius: 10;
   color: #ffffff;
@@ -77,6 +77,10 @@ button:hover {
   padding-top: 4px;
   padding-bottom: 4px;
   background-color: rgba(0,0,0,0.3);
+}
+
+tooltip {
+  font-family: 'Fira Sans';
 }
 
 #wireplumber.muted {
@@ -92,18 +96,18 @@ button:hover {
   font-family: "FiraCode Nerd Font";
 }
 
-#battery.discharging.critical {
+#battery.charging.critical, #battery.discharging.critical {
   border-top: 2px solid #ff0000;
 }
 
-#battery.discharging.warning {
+#battery.charging.warning, #battery.discharging.warning {
   border-top: 2px solid #ff8800;
 }
 
-#battery.discharging.early-warning {
+#battery.charging.early-warning, #battery.discharging.early-warning {
   border-top: 2px solid #ffff00;
 }
 
-#battery.discharging.healthy, #battery.full {
+#battery.charging.healthy, #battery.discharging.healthy, #battery.full {
   border-top: 2px solid #00ff00;
 }
