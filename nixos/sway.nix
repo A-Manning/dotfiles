@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   enable = true;
@@ -6,6 +6,49 @@
     bars = [
       { command = "waybar"; }
     ];
+    colors =
+      let
+        cyan = "#00ffff";
+        dark-trans = "#11111144";
+        darker-trans = "#11111188";
+        green = "#00ff00";
+        green-dim = "#008800";
+        light-grey = "#888888";
+        grey = "#333333";
+        magenta = "#ff00ff";
+        # should not occur unless something has gone wrong!
+        red = "#ff0000";
+        trans = "#00000000";
+
+      in {
+      focused = {
+        background = dark-trans;
+        border = green;
+        childBorder = green;
+        indicator = magenta;
+        text = green;
+      };
+      focusedInactive = {
+        #5f676a
+        background = dark-trans;
+        #333333 
+        border = cyan;
+        #5f676a
+        childBorder = cyan;
+        #484e50
+        indicator = trans;
+        #ffffff
+        text = cyan;
+      };
+      unfocused = {
+        background = darker-trans;
+        border = cyan;
+        # 222222
+        childBorder = trans;
+        indicator = trans;
+        text = light-grey;
+      };
+    };
     floating.criteria = [
       { title = "Calculator"; }
     ];
@@ -20,6 +63,13 @@
       inner = 5;
       outer = 0;
       smartBorders = "off";
+    };
+    input = {
+      "76:613:Apple_Inc._Magic_Trackpad_2" = {
+        click_method = "button_areas";
+        natural_scroll = "enabled";
+        pointer_accel = "0.666";
+      };
     };
     keybindings =
       let
@@ -96,20 +146,48 @@
         # reload the configuration file
         "${sup}+c" = "reload";
         "${mod}+Shift+c" = "reload";
-        # reload sway inplace (preserves your layout/session, can be used to upgrade i3)
+        # reload sway inplace
         "${sup}+r" = "reload";
         "${mod}+Shift+r" = "reload";
+        # wmenu
+        "${mod}+d" = ''
+          exec ${pkgs.dmenu}/bin/dmenu_path \
+          | ${pkgs.wmenu}/bin/wmenu -i -N 000000 -n 00ff00 -S 00ff00 -s 000000 \
+          | ${pkgs.findutils}/bin/xargs swaymsg exec --
+        '';
         # Mute key
         "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         # Volume down
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioLowerVolume" =
+          "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
         # Volume up
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioRaiseVolume" =
+          "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
         # Brightness down
         "XF86MonBrightnessDown" = "exec lightctl down";
         # Brightness down
         "XF86MonBrightnessUp" = "exec lightctl up";
       };
+    output =
+      let bg-path =
+        "~/Pictures/wallpapers/nix-wallpaper-nineish-solarized-dark.png";
+      in
+      {
+        eDP-1 = {
+          bg = bg-path + " fill";
+        };
+        DP-8 = {
+          bg = bg-path + " fill";
+        };
+        DP-9 = {
+          bg = bg-path + " fill";
+          scale = "1.5";
+        };
+        DP-10 = {
+          bg = bg-path + " fill";
+          scale = "1.5";
+        };
+    };
     startup = [
       # xdg-desktop-portal-gnome is broken, do not use
       # see https://bbs.archlinux.org/viewtopic.php?id=285590
@@ -118,8 +196,13 @@
       { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
       { command = "nm-applet"; }
       { command = "avizo-service"; }
+      { command = "swaync"; }
     ];
     window = {
+      border = 1;
+      commands = [
+        { criteria = { class = "^.*"; }; command = "border pixel 1"; }
+      ];
       # hideEdgeBorders = "--i3 smart";
       titlebar = false;
     };
@@ -127,6 +210,7 @@
   };
   extraConfig = ''
     hide_edge_borders --i3 smart
+    titlebar_border_thickness 1
   '';
   extraConfigEarly = ''
     set $mod Mod1
@@ -135,5 +219,6 @@
   extraSessionCommands = ''
     export XDG_CURRENT_DESKTOP=sway
   '';
+  # package = pkgs.swayfx;
   wrapperFeatures.gtk = true;
 }

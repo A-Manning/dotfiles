@@ -2,7 +2,7 @@
 
 
 let
-  sway-config = import ./sway.nix { inherit lib; };
+  sway-config = import ./sway.nix { inherit lib pkgs; };
 in
 {
   imports = [];
@@ -15,6 +15,8 @@ in
       color-scheme = "prefer-dark";
     };
   };
+
+  fonts.fontconfig.enable = true;
 
   gtk = {
     enable = true;
@@ -49,26 +51,40 @@ in
     discord
     fira
     fira-code
+    flameshot
     font-awesome
     font-awesome_5
     git
+    gocryptfs
     google-chrome
     helvum
     htop
+    jless
+    # needed for udiskie tray icon
+    libappindicator-gtk3
     mpv
     neofetch
     networkmanagerapplet
     nix-prefetch-git
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     nushell
     oh-my-zsh
     qbittorrent
     rustup
+    swaynotificationcenter
     telegram-desktop
+    tree
     typst
     typstfmt
     typst-lsp
+    udiskie
     vscodium
     waybar
+    wezterm
+    wlr-randr
+    wmenu
     wttrbar
     zstd
   ];
@@ -97,9 +113,16 @@ in
   };
 
   # Foot
-  programs.foot.enable = true;
-  programs.foot.settings.main = {
-    dpi-aware = "yes";
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        dpi-aware = "yes";
+      };
+      colors = {
+        alpha = 0.95;
+      };
+    };
   };
 
   # Git
@@ -168,6 +191,7 @@ in
         "'Fira Code', 'Font Awesome 6 Free', 'FiraCode Nerd Font'";
       "editor.fontLigatures" = true;
       "editor.fontSize" = 16;
+      "editor.rulers" = [ 79 ];
       "rust-analyzer.imports.merge.glob" = false;
       "rust-analyzer.inlayHints.chainingHints.enable" = false;
       "rust-analyzer.inlayHints.parameterHints.enable" = false;
@@ -257,15 +281,36 @@ in
         layer = "bottom";
         modules-left = [ "sway/workspaces" ];
         # modules-center = [ "temperature" ];
-        modules-right = [ "temperature#cpu" "temperature#nvme1" "wireplumber" "battery" "tray" "custom/weather" "clock" ];
+        modules-right = [
+          "temperature#cpu"
+          "temperature#nvme1"
+          "wireplumber"
+          "battery"
+          "tray"
+          "custom/weather"
+          "clock"
+        ];
         position = "bottom";
         "sway/workspaces" = {
           disable-scroll = true;
-          all-outputs = true;
+          # all-outputs = true;
         };
       };
     };
     style = waybar-style;
+  };
+
+  # Wezterm
+  programs.wezterm = {
+    enable = true;
+    extraConfig = ''
+      return {
+        color_scheme = "Tokyo Night",
+        font = wezterm.font 'Fira Mono',
+        hide_tab_bar_if_only_one_tab = true,
+        window_background_opacity = 0.95,
+      }
+    '';
   };
 
   # Zsh
@@ -276,6 +321,7 @@ in
       gdiff = "git diff";
       glfm = "git ls-files --modified";
       glfu = "git ls-files --others --exclude-standard";
+      gpush = "git push";
       gstat = "git status";
       r = "echo \"This command has been unset in \\`~/.zshrc\\`.\"";
     };
@@ -291,10 +337,10 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme = "gnome";
     style = {
-      name = "breeze-dark";
-      package = pkgs.libsForQt5.breeze-qt5;
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
     };
   };
 
@@ -310,6 +356,11 @@ in
     };
     # Direnv wrapper
     lorri.enable = true;
+
+    udiskie = {
+      enable = true;
+      tray = "always";
+    };
   };
 
   # Enable Sway

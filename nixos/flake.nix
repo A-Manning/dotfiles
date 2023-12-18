@@ -29,6 +29,7 @@
 
           ({ pkgs, ... }: {
             environment.systemPackages = with pkgs; [
+              exfat
               micro
   	          tmux
   	          wl-clipboard
@@ -39,17 +40,32 @@
             # Fonts
             fonts = {
               enableDefaultPackages = true;
+              /*
+              fontconfig = {
+                defaultFonts = {
+                  serif = [ "Vazirmatn" "Ubuntu" ];
+                  sansSerif = [ "Vazirmatn" "Ubuntu" ];
+                  monospace = [ "Ubuntu" ];
+                };
+              };
+              */
               packages = with pkgs; [
                 fira
                 fira-code
                 font-awesome
                 font-awesome_5
                 (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
+                noto-fonts
+                noto-fonts-cjk-sans
+                noto-fonts-cjk-serif
               ];
             };
 
             # needed for Ledger
             # groups.plugdev = {};
+
+            # Enable bluetooth
+            hardware.bluetooth.enable = true;
 
             # enable ledger
             hardware.ledger.enable = true;
@@ -92,6 +108,9 @@
               id = [ "18094515" ];
             };
 
+            # Enable bluetooth
+            services.blueman.enable = true;
+
             # needed for sway?
             services.dbus.enable = true;
 
@@ -108,6 +127,9 @@
                 device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
               };
             };
+
+            # Needed for Udiskie
+            services.udisks2.enable = true;
 
             xdg.portal = {
               enable = true;

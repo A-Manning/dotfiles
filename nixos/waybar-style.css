@@ -1,6 +1,6 @@
 window#waybar {
   border: none;
-  border-radius: 10;
+  border-radius: 10px;
   background-color: rgba(0,0,0,0.2);
   color: #ffffff;
   transition-property: background-color;
@@ -21,11 +21,11 @@ window#waybar.hidden {
 }
 
 #window {
-  margin: 2;
-  padding-left: 8;
-  padding-right: 8;
+  margin: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
   background-color: rgba(0,0,0,0.3);
-  border-radius: 5;
+  border-radius: 5px;
   font-size:14px;
   font-weight: bold;
   font-family: "Fira Code", "Font Awesome 6 Free";
@@ -36,7 +36,7 @@ button {
   box-shadow: inset 0 -3px transparent;
   /* Avoid rounded borders under each button name */
   border: none;
-  border-radius: 5;
+  border-radius: 5px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -46,9 +46,9 @@ button:hover {
 }
 
 #workspaces button {
-  margin: 1;
+  margin: 1px;
   padding: 0 4px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(11,11,11,0.75);
 }
 
 #workspaces button:hover {
@@ -67,7 +67,7 @@ button:hover {
 
 #clock, #custom-weather, #battery, #temperature, #tray, #wireplumber {
   border: none;
-  border-radius: 10;
+  border-radius: 10px;
   color: #ffffff;
   font-family: "Fira Code", "Font Awesome 6 Free";
   font-size:14px;
@@ -76,7 +76,7 @@ button:hover {
   padding-right: 4px;
   padding-top: 4px;
   padding-bottom: 4px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(11,11,11,0.75);
 }
 
 tooltip {

@@ -26,6 +26,9 @@
   boot.initrd.luks.devices."luks-032c699d-1f9f-43b0-bc40-a19552cf37fc".device = "/dev/disk/by-uuid/032c699d-1f9f-43b0-bc40-a19552cf37fc";
   boot.initrd.luks.devices."luks-032c699d-1f9f-43b0-bc40-a19552cf37fc".keyFile = "/crypto_keyfile.bin";
 
+  # Enable support for exFAT, NTFS
+  boot.supportedFilesystems = [ "exfat" "ntfs" ];
+
   networking.hostName = "ash-thinkpad-p16v"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
