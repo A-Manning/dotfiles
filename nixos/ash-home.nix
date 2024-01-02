@@ -60,8 +60,7 @@ in
     helvum
     htop
     jless
-    # needed for udiskie tray icon
-    libappindicator-gtk3
+    kanshi
     mpv
     neofetch
     networkmanagerapplet
@@ -173,6 +172,7 @@ in
         vscode-marketplace.juanblanco.solidity
         vscode-marketplace.max-ss.cyberpunk
         vscode-marketplace.nvarner.typst-lsp
+        vscode-marketplace.peterj.proto
         vscode-marketplace.rust-lang.rust-analyzer
         vscode-marketplace.tamasfe.even-better-toml
         vscode-marketplace.thenuprojectcontributors.vscode-nushell-lang
@@ -199,6 +199,9 @@ in
       "rust-analyzer.procMacro.enable" = false;
       "window.menuBarVisibility" = "toggle";
       "workbench.colorTheme" = "Activate UMBRA protocol";
+      "[markdown]" = {
+        "editor.wordWrap" = "wordWrapColumn";
+      };
     };
   };
 
@@ -354,6 +357,44 @@ in
         };
       };
     };
+
+    kanshi = {
+      enable = true;
+      profiles = {
+        docked = {
+          exec = [
+            "wlr-randr --output DP-9 --off && wlr-randr --output DP-9 --on"
+          ];
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+            }
+            {
+              criteria = "AOC U28P2G6B PDRMAJA003132";
+              position = "1920,0";
+              scale = 1.5;
+              status = "enable";
+            }
+            {
+              criteria = "AOC U28P2G6B PDRMAJA003160";
+              position = "4480,0";
+              scale = 1.5;
+              status = "enable";
+            }
+          ];
+        };
+        undocked = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+            }
+          ];
+        };
+      };
+    };
+
     # Direnv wrapper
     lorri.enable = true;
 
