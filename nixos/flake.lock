@@ -34,6 +34,19 @@
         "type": "github"
       }
     },
+    "git-hook-deny-fixme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-VDoZtMQxiFfEge+YXCjamnBjDeaogutKUUb30AxeUUU=",
+        "path": "../.config/git/hooks/deny-fixme.sh",
+        "type": "path"
+      },
+      "original": {
+        "path": "../.config/git/hooks/deny-fixme.sh",
+        "type": "path"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -152,6 +165,7 @@
     },
     "root": {
       "inputs": {
+        "git-hook-deny-fixme": "git-hook-deny-fixme",
         "home-manager": "home-manager",
         "kmonad": "kmonad",
         "kmonad-config": "kmonad-config",

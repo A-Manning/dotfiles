@@ -1,5 +1,13 @@
-{config, lib, pkgs, system, vscode-extensions, waybar-style, ...}:
-
+{
+  config,
+  git-hook-deny-fixme,
+  lib,
+  pkgs,
+  system,
+  vscode-extensions,
+  waybar-style,
+  ...
+}:
 
 let
   sway-config = import ./sway.nix { inherit lib pkgs; };
@@ -138,6 +146,9 @@ in
       merge = {
         renameLimit = 4096;
       };
+    };
+    hooks = {
+      pre-commit = git-hook-deny-fixme;
     };
     includes = [
       { condition = "gitdir:~/Dev/"; path = "~/Dev/.gitconfig"; }

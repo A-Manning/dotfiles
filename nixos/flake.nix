@@ -1,5 +1,9 @@
 {
   inputs = {
+    git-hook-deny-fixme = {
+      flake = false;
+      url = "path:../.config/git/hooks/deny-fixme.sh";
+    };
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad-config = {
@@ -13,8 +17,17 @@
       url = "path:./waybar-style.css"; 
     };
   };
-  outputs = { self, home-manager, kmonad, kmonad-config, nixpkgs, vscode-extensions, waybar-style, ... }@inputs:
-  {  
+  outputs = {
+    self,
+    git-hook-deny-fixme,
+    home-manager,
+    kmonad,
+    kmonad-config,
+    nixpkgs,
+    vscode-extensions,
+    waybar-style,
+    ...
+  }@inputs: {  
     nixosConfigurations = {
       "ash-thinkpad-p16v" = let system = "x86_64-linux"; in nixpkgs.lib.nixosSystem {
         modules = [
@@ -77,7 +90,14 @@
             home-manager.users.ash = { config, lib, pkgs, ... }: {
               imports = [
                 (import ./ash-home.nix {
-                  inherit config lib pkgs system vscode-extensions waybar-style;
+                  inherit
+                    config
+                    git-hook-deny-fixme
+                    lib
+                    pkgs
+                    system
+                    vscode-extensions
+                    waybar-style;
                 })
               ];
               # The state version is required and should stay at the version you
