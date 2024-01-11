@@ -79,6 +79,7 @@ in
     typstfmt
     typst-lsp
     udiskie
+    unzip
     vscodium
     waybar
     wezterm
@@ -197,6 +198,8 @@ in
       "rust-analyzer.inlayHints.parameterHints.enable" = false;
       "rust-analyzer.inlayHints.typeHints.enable" = false;
       "rust-analyzer.procMacro.enable" = false;
+      # Some issues with fontconfig
+      "typst-lsp.exportPdf" = "never";
       "window.menuBarVisibility" = "toggle";
       "workbench.colorTheme" = "Activate UMBRA protocol";
       "[markdown]" = {
@@ -312,6 +315,13 @@ in
         font = wezterm.font 'Fira Mono',
         hide_tab_bar_if_only_one_tab = true,
         window_background_opacity = 0.95,
+        window_padding = {
+          left = 2,
+          right = 2,
+          top = 0,
+          bottom = 0,
+        }
+
       }
     '';
   };
