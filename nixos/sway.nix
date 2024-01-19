@@ -198,6 +198,7 @@
       { command = "avizo-service"; }
       { command = "swaync"; }
     ];
+    terminal = "${pkgs.wezterm}/bin/wezterm";
     window = {
       border = 1;
       commands = [
