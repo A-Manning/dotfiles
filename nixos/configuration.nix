@@ -97,7 +97,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ash = {
     description = "Ash Manning";
-    extraGroups = [ "input" "networkmanager" "plugdev" "uinput" "wheel" ];
+    extraGroups = [ "dialout" "input" "networkmanager" "plugdev" "uinput" "wheel" ];
     isNormalUser = true;
     packages = with pkgs; [
       firefox
