@@ -80,6 +80,7 @@ in
     oh-my-zsh
     qbittorrent
     rustup
+    sshfs
     swaynotificationcenter
     telegram-desktop
     tree
@@ -323,8 +324,36 @@ in
     extraConfig = ''
       return {
         color_scheme = "Tokyo Night",
+        disable_default_key_bindings = true,
         font = wezterm.font 'Fira Mono',
         hide_tab_bar_if_only_one_tab = true,
+        keys = {
+          {
+            key = 'C',
+            mods = 'CTRL',
+            action = wezterm.action.CopyTo 'Clipboard'
+          },
+          {
+            key = 'C',
+            mods = 'SHIFT|CTRL',
+            action = wezterm.action.CopyTo 'Clipboard'
+          },
+          {
+            key = 'T',
+            mods = 'CTRL',
+            action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+          },
+          {
+            key = 'V',
+            mods = 'CTRL',
+            action = wezterm.action.PasteFrom 'Clipboard'
+          },
+          {
+            key = 'V',
+            mods = 'SHIFT|CTRL',
+            action = wezterm.action.PasteFrom 'Clipboard'
+          },
+        },
         window_background_opacity = 0.95,
         window_padding = {
           left = 2,
