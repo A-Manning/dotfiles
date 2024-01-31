@@ -69,6 +69,7 @@ in
     htop
     jless
     kanshi
+    kazam
     mpv
     neofetch
     networkmanagerapplet
@@ -192,6 +193,17 @@ in
         vscode-marketplace.tomoki1207.pdf
       ];
     keybindings = [
+      # Disable search bar in file explorer
+      {
+        key = "ctrl+f";
+        command = "-actions.find";
+        when = "editorFocus || editorIsOpen";
+      }
+      # Enable search bar outside of file explorer
+      {
+        key = "ctrl+f";
+        command = "actions.find";
+      }
       {
         key = "ctrl+shift+f";
         command = "-workbench.action.findInFiles";
