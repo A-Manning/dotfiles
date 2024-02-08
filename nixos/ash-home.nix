@@ -420,6 +420,17 @@ in
       };
     };
 
+    flameshot = {
+      enable = true;
+      settings = {
+        General = {
+          contrastOpacity = 188;
+          savePath = "/home/ash/Pictures/Screenshots";
+          filenamePattern = "%F %H-%M-%S";
+        };
+      };
+    };
+
     kanshi = {
       enable = true;
       profiles = {
