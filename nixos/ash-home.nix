@@ -246,7 +246,7 @@ in
           format-discharging-early-warning = "󱊢 {capacity}%";
           format-discharging-warning = "󱊡 {capacity}%";
           format-discharging-critical = "󱃍 {capacity}%";
-          format-plugged = "plugged {capacity}%";
+          format-plugged = " {capacity}%";
           format-full = " 100%";
           states = {
             healthy = 100;
