@@ -217,8 +217,10 @@
     set $mod Mod1
     set $sup Mod4
   '';
+  extraOptions = [ "--unsupported-gpu" ];
   extraSessionCommands = ''
     export XDG_CURRENT_DESKTOP=sway
+    export WLR_DRM_DEVICES=/dev/dri/card1
   '';
   # package = pkgs.swayfx;
   wrapperFeatures.gtk = true;

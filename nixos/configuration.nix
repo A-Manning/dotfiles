@@ -10,6 +10,13 @@
       ./hardware-configuration.nix
     ];
 
+  # blacklist noveau so that the proprietary drivers can be used instead
+  boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.extraModprobeConfig = ''
+    blacklist nouveau
+    options nouveau modeset=0
+  '';
+
   # Bootloader.
   boot.loader.systemd-boot = {
     enable = true;
@@ -65,6 +72,14 @@
   services.xserver.displayManager.sessionPackages = [ pkgs.sway ];
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Configure graphics drivers
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "fbdev"
+    "amdgpu"
+    "nvidia"
+  ];
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -97,7 +112,15 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ash = {
     description = "Ash Manning";
-    extraGroups = [ "dialout" "input" "networkmanager" "plugdev" "uinput" "wheel" ];
+    extraGroups = [
+      "dialout"
+      "input"
+      "networkmanager"
+      "plugdev"
+      "uinput"
+      "wheel"
+      "video"
+    ];
     isNormalUser = true;
     packages = with pkgs; [
       firefox

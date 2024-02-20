@@ -40,7 +40,7 @@
           # Kmonad module
           kmonad.nixosModules.default
 
-          ({ pkgs, ... }: {
+          ({ config, pkgs, ... }: {
             environment.systemPackages = with pkgs; [
               exfat
               micro
@@ -82,6 +82,23 @@
 
             # enable ledger
             hardware.ledger.enable = true;
+
+            # Use proprietary driver for nvidia GPU
+            hardware.nvidia = {
+              # Modesetting is required.
+              modesetting.enable = true;
+              nvidiaSettings = true;
+              package = config.boot.kernelPackages.nvidiaPackages.stable;
+              prime = {
+		            # Make sure to use the correct Bus ID values for your system!
+		            amdgpuBusId = "PCI:198:0:0";
+		            nvidiaBusId = "PCI:1:0:0";
+                offload = {
+                  enable = true;
+                  enableOffloadCmd = true;
+		            };
+	            };
+            };
 
             # needed for wayland?
             hardware.opengl.enable = true;
