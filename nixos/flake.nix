@@ -101,7 +101,13 @@
             };
 
             # needed for wayland?
-            hardware.opengl.enable = true;
+            hardware.opengl = {
+              enable = true;
+              extraPackages = with pkgs; [
+                amdvlk
+                rocmPackages.clr.icd
+              ];
+            };
 
             # home-manager
             home-manager.users.ash = { config, lib, pkgs, ... }: {

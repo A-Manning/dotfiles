@@ -74,10 +74,10 @@
 
   # Configure graphics drivers
   services.xserver.videoDrivers = [
-    "modesetting"
-    "fbdev"
     "amdgpu"
     "nvidia"
+    "modesetting"
+    "fbdev"
   ];
 
   # Configure keymap in X11
