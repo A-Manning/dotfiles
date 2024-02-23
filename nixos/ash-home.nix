@@ -70,6 +70,7 @@ in
     jless
     kanshi
     kazam
+    libreoffice
     mpv
     neofetch
     networkmanagerapplet
