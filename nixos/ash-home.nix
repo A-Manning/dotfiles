@@ -200,6 +200,28 @@ in
         command = "-actions.find";
         when = "editorFocus || editorIsOpen";
       }
+      # Ctrl + Down to insert cursor below,
+      # Ctrl + Shift + Down to move line/selection down
+      {
+        key = "ctrl+shift+down";
+        command = "-editor.action.insertCursorBelow";
+        when = "editorTextFocus";
+      }
+      {
+        key = "ctrl+down";
+        command = "editor.action.insertCursorBelow";
+        when = "editorTextFocus";
+      }
+      {
+        key = "alt+down";
+        command = "-editor.action.moveLinesDownAction";
+        when = "editorTextFocus && !editorReadonly";
+      }
+      {
+        key = "ctrl+shift+down";
+        command = "editor.action.moveLinesDownAction";
+        when = "editorTextFocus && !editorReadonly";
+      }
       # Enable search bar outside of file explorer
       {
         key = "ctrl+f";
@@ -208,6 +230,28 @@ in
       {
         key = "ctrl+shift+f";
         command = "-workbench.action.findInFiles";
+      }
+      # Ctrl + Up to insert cursor above,
+      # Ctrl + Shift + Up to move line/selection up
+      {
+        key = "ctrl+shift+up";
+        command = "-editor.action.insertCursorAbove";
+        when = "editorTextFocus";
+      }
+      {
+        key = "ctrl+up";
+        command = "editor.action.insertCursorAbove";
+        when = "editorTextFocus";
+      }
+      {
+        key = "alt+up";
+        command = "-editor.action.moveLinesUpAction";
+        when = "editorTextFocus && !editorReadonly";
+      }
+      {
+        key = "ctrl+shift+up";
+        command = "editor.action.moveLinesUpAction";
+        when = "editorTextFocus && !editorReadonly";
       }
     ];
     mutableExtensionsDir = false;
