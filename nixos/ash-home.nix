@@ -431,6 +431,7 @@ in
       gdiff = "git diff";
       glfm = "git ls-files --modified";
       glfu = "git ls-files --others --exclude-standard";
+      gpt = "git push --tags";
       gpush = "git push";
       gstat = "git status";
       r = "echo \"This command has been unset in \\`~/.zshrc\\`.\"";
