@@ -145,6 +145,7 @@
   ];
 
   # Enable programs
+  programs.steam.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
