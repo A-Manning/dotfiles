@@ -71,6 +71,7 @@ in
     kanshi
     kazam
     libreoffice
+    melonDS
     mpv
     neofetch
     networkmanagerapplet
@@ -184,6 +185,7 @@ in
         vscode-marketplace.alefragnani.bookmarks
         vscode-marketplace.bbenoist.nix
         vscode-marketplace.canadaduane.vscode-kmonad
+        vscode-marketplace.fstarlang.fstar-vscode-assistant
         vscode-marketplace.juanblanco.solidity
         vscode-marketplace.max-ss.cyberpunk
         vscode-marketplace.nvarner.typst-lsp
