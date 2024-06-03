@@ -69,7 +69,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sessionPackages = [ pkgs.sway ];
+  services.displayManager.sessionPackages = [ pkgs.sway ];
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure graphics drivers
@@ -82,8 +82,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.

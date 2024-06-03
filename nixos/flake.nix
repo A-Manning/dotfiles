@@ -4,13 +4,13 @@
       flake = false;
       url = "path:../.config/git/hooks/deny-fixme.sh";
     };
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad-config = {
       flake = false;
       url = "path:../.config/kmonad/config.kbd";  
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
       flake = false;

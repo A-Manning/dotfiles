@@ -450,7 +450,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
+    platformTheme.name = "adwaita";
     style = {
       name = "adwaita-dark";
       package = pkgs.adwaita-qt;
@@ -481,12 +481,13 @@ in
 
     kanshi = {
       enable = true;
-      profiles = {
-        docked = {
-          exec = [
+      settings = [
+        {
+          profile.name = "docked";
+          profile.exec = [
             "wlr-randr --output DP-9 --off && wlr-randr --output DP-9 --on"
           ];
-          outputs = [
+          profile.outputs = [
             {
               criteria = "eDP-1";
               status = "enable";
@@ -504,9 +505,10 @@ in
               status = "enable";
             }
           ];
-        };
-        docked-single = {
-          outputs = [
+        }
+        {
+          profile.name = "docked-single";
+          profile.outputs = [
             {
               criteria = "eDP-1";
               status = "enable";
@@ -524,16 +526,17 @@ in
               status = "disable";
             }
           ];
-        };
-        undocked = {
-          outputs = [
+        }
+        {
+          profile.name = "undocked";
+          profile.outputs = [
             {
               criteria = "eDP-1";
               status = "enable";
             }
           ];
-        };
-      };
+        }
+      ];
     };
 
     # Direnv wrapper

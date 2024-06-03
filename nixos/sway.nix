@@ -2,6 +2,7 @@
 
 {
   enable = true;
+  checkConfig = false;
   config = {
     bars = [
       { command = "waybar"; }
