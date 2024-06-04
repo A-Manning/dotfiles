@@ -68,6 +68,7 @@ in
     helvum
     htop
     jless
+    jq
     kanshi
     kazam
     libreoffice
