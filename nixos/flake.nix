@@ -11,6 +11,7 @@
       url = "path:../.config/kmonad/config.kbd";  
     };
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
       flake = false;
@@ -24,13 +25,38 @@
     kmonad,
     kmonad-config,
     nixpkgs,
+    nixpkgs-unstable,
     vscode-extensions,
     waybar-style,
     ...
-  }@inputs: {  
+  }@inputs: {
     nixosConfigurations = {
-      "ash-thinkpad-p16v" = let system = "x86_64-linux"; in nixpkgs.lib.nixosSystem {
+      "ash-thinkpad-p16v" =
+        let
+          system = "x86_64-linux";
+          pkgs = import nixpkgs {
+            inherit system;
+            config = { allowUnfree = true; };
+          };
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config = pkgs.config;
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+
         modules = [
+          # set zen kernel from unstable
+          ({ config, pkgs, ... }:
+            let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+            in {
+              boot = {
+                kernelPackages = myKernelPackages;
+                extraModulePackages = [ myKernelPackages.nvidia_x11_beta ];
+              };
+            }
+          )
+
           # Import old configuration
           ./configuration.nix
 
@@ -41,13 +67,16 @@
           kmonad.nixosModules.default
 
           ({ config, pkgs, ... }: {
-            environment.systemPackages = with pkgs; [
-              exfat
-              micro
-  	          tmux
-  	          wl-clipboard
-              yubico-pam
-  	          zsh
+
+            environment.systemPackages = [
+              pkgs.exfat
+              pkgs.micro
+  	          pkgs.tmux
+  	          pkgs.wl-clipboard
+              pkgs.yubico-pam
+  	          pkgs.zsh
+            ] ++ [
+              pkgs-unstable.linuxPackages_zen.nvidia_x11_beta
             ];
 
             # Fonts
@@ -87,8 +116,11 @@
             hardware.nvidia = {
               # Modesetting is required.
               modesetting.enable = true;
-              nvidiaSettings = true;
-              package = config.boot.kernelPackages.nvidiaPackages.stable;
+              # Must disable to get this to work on stable
+              # https://discourse.nixos.org/t/nvidia-the-bane-of-my-existence/51524/3
+              nvidiaSettings = false;
+              package = config.boot.kernelPackages.nvidiaPackages.beta;
+
               prime = {
 		            # Make sure to use the correct Bus ID values for your system!
 		            amdgpuBusId = "PCI:198:0:0";
@@ -128,6 +160,7 @@
               home.stateVersion = "23.05";
             };
 
+            networking.enableIPv6 = false;
             networking.firewall = {
               # Open port for wireguard
               allowedUDPPorts = [ 55603 ];
