@@ -30,7 +30,7 @@ in
     enable = true;
     cursorTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       size = 24;
     };
     gtk3.extraConfig = {
@@ -47,7 +47,7 @@ in
     */
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+      package = pkgs.gnome-themes-extra;
     };
   };
 
@@ -90,7 +90,6 @@ in
     tree
     typst
     typstfmt
-    typst-lsp
     udiskie
     unzip
     vscodium
@@ -106,7 +105,7 @@ in
   home.pointerCursor = {
     gtk.enable = true;
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     size = 24;
     x11 = {
       enable = true;
@@ -189,7 +188,7 @@ in
         vscode-marketplace.fstarlang.fstar-vscode-assistant
         vscode-marketplace.juanblanco.solidity
         vscode-marketplace.max-ss.cyberpunk
-        vscode-marketplace.nvarner.typst-lsp
+        vscode-marketplace.myriad-dreamin.tinymist
         vscode-marketplace.peterj.proto
         vscode-marketplace.rust-lang.rust-analyzer
         vscode-marketplace.tamasfe.even-better-toml

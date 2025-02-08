@@ -4,13 +4,13 @@
       flake = false;
       url = "path:../.config/git/hooks/deny-fixme.sh";
     };
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad-config = {
       flake = false;
       url = "path:../.config/kmonad/config.kbd";  
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
@@ -109,6 +109,15 @@
             # Enable bluetooth
             hardware.bluetooth.enable = true;
 
+            # needed for wayland?
+            hardware.graphics = {
+              enable = true;
+              extraPackages = with pkgs; [
+                amdvlk
+                rocmPackages.clr.icd
+              ];
+            };
+
             # enable ledger
             hardware.ledger.enable = true;
 
@@ -119,6 +128,7 @@
               # Must disable to get this to work on stable
               # https://discourse.nixos.org/t/nvidia-the-bane-of-my-existence/51524/3
               nvidiaSettings = false;
+              open = true;
               package = config.boot.kernelPackages.nvidiaPackages.beta;
 
               prime = {
@@ -130,15 +140,6 @@
                   enableOffloadCmd = true;
 		            };
 	            };
-            };
-
-            # needed for wayland?
-            hardware.opengl = {
-              enable = true;
-              extraPackages = with pkgs; [
-                amdvlk
-                rocmPackages.clr.icd
-              ];
             };
 
             # home-manager
