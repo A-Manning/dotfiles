@@ -18,6 +18,22 @@ in
   # Enable unfree packages for the user
   nixpkgs.config.allowUnfree = true;
 
+  # Patch for wezterm, see
+  # https://github.com/wezterm/wezterm/issues/6618
+  # https://github.com/wezterm/wezterm/pull/6508
+  nixpkgs.overlays = [
+    (final: prev: {
+      wezterm = prev.wezterm.overrideAttrs (_: prev: {
+        patches = prev.patches or [] ++ [
+          (final.fetchpatch {
+            url = "https://patch-diff.githubusercontent.com/raw/wez/wezterm/pull/6508.patch";
+            sha256 = "sha256-eMpg206tUw8m0Sz+3Ox7HQnejPsWp0VHVw169/Rt4do=";
+          }).outPath
+        ];
+      });
+    })
+  ];
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
