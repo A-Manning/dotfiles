@@ -17,6 +17,8 @@ in
 
   # Enable unfree packages for the user
   nixpkgs.config.allowUnfree = true;
+  # Enable CUDA support, needed for btop
+  nixpkgs.config.cudaSupport = true;
 
   # Patch for wezterm, see
   # https://github.com/wezterm/wezterm/issues/6618
