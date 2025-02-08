@@ -520,12 +520,6 @@ in
               scale = 1.5;
               status = "enable";
             }
-            {
-              criteria = "AOC U28P2G6B PDRMAJA003160";
-              position = "4480,0";
-              scale = 1.5;
-              status = "disable";
-            }
           ];
         }
         {
