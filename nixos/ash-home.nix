@@ -88,7 +88,6 @@ in
     jless
     jq
     kanshi
-    kazam
     libreoffice
     melonDS
     mpv
