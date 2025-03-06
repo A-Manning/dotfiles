@@ -199,7 +199,8 @@
                 defcfg = {
                   enable = true;
                   fallthrough = true;
-                  compose.key = null;
+                  # Disable compose key by setting to a key that does not exist
+                  compose.key = "f24";
                 };
                 device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
               };

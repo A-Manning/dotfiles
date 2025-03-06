@@ -525,13 +525,34 @@ in
         }
         {
           profile.name = "docked-single";
+          profile.exec = let
+            # Get the output name for the BenQ RD280U
+            get_benq_output_name_cmd =
+              "swaymsg -t get_outputs --raw | " +
+              "jq '.[] | " +
+              "select((.make == \"BNQ BenQ\") and (.model == \"RD280U\")) | " +
+              ".name'";
+            # Move workspace to output
+            move_workspace_cmd = workspace: output:
+              "swaymsg '[workspace=\"^${workspace}$\"]' move workspace to output ${output}";
+            # Move workspace to BenQ RD280U
+            move_workspace_benq_cmd = workspace:
+              "BENQ_OUTPUT_NAME=$(${get_benq_output_name_cmd}); " +
+              move_workspace_cmd workspace "$BENQ_OUTPUT_NAME";
+          in [
+            (move_workspace_benq_cmd "1")
+            (move_workspace_benq_cmd "2")
+            (move_workspace_benq_cmd "3")
+            (move_workspace_benq_cmd "4")
+            (move_workspace_benq_cmd "5")
+          ];
           profile.outputs = [
             {
               criteria = "eDP-1";
               status = "enable";
             }
             {
-              criteria = "AOC U28P2G6B PDRMAJA003132";
+              criteria = "BNQ BenQ RD280U PBR0002701Q";
               position = "1920,0";
               scale = 1.5;
               status = "enable";
