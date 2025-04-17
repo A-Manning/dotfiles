@@ -158,6 +158,7 @@ in
   programs.git = {
     enable = true;
     aliases = {
+      commit-utc = "!git commit --date=\"$(date --utc +%Y-%m-%dT%H:%M:%S%z)\"";
       rebase-ic = "-c core.editor='codium -n --wait' rebase -i";
     };
     extraConfig = {
@@ -498,11 +499,29 @@ in
 
     kanshi = {
       enable = true;
-      settings = [
+      settings = let
+        # Get the output name for the BenQ RD280U
+        get_benq_output_name_cmd =
+          "swaymsg -t get_outputs --raw | " +
+          "jq '.[] | " +
+          "select((.make == \"BNQ BenQ\") and (.model == \"RD280U\")) | " +
+          ".name'";
+        # Move workspace to output
+        move_workspace_cmd = workspace: output:
+          "swaymsg '[workspace=\"^${workspace}$\"]' move workspace to output ${output}";
+        # Move workspace to BenQ RD280U
+        move_workspace_benq_cmd = workspace:
+          "BENQ_OUTPUT_NAME=$(${get_benq_output_name_cmd}); " +
+          move_workspace_cmd workspace "$BENQ_OUTPUT_NAME";
+      in [
         {
           profile.name = "docked";
           profile.exec = [
-            "wlr-randr --output DP-9 --off && wlr-randr --output DP-9 --on"
+            (move_workspace_benq_cmd "1")
+            (move_workspace_benq_cmd "2")
+            (move_workspace_benq_cmd "3")
+            (move_workspace_benq_cmd "4")
+            (move_workspace_benq_cmd "5")
           ];
           profile.outputs = [
             {
@@ -510,7 +529,7 @@ in
               status = "enable";
             }
             {
-              criteria = "AOC U28P2G6B PDRMAJA003132";
+              criteria = "BNQ BenQ RD280U PBR0002701Q";
               position = "1920,0";
               scale = 1.5;
               status = "enable";
@@ -519,27 +538,13 @@ in
               criteria = "AOC U28P2G6B PDRMAJA003160";
               position = "4480,0";
               scale = 1.5;
-              status = "enable";
+              status = "disable";
             }
           ];
         }
         {
           profile.name = "docked-single";
-          profile.exec = let
-            # Get the output name for the BenQ RD280U
-            get_benq_output_name_cmd =
-              "swaymsg -t get_outputs --raw | " +
-              "jq '.[] | " +
-              "select((.make == \"BNQ BenQ\") and (.model == \"RD280U\")) | " +
-              ".name'";
-            # Move workspace to output
-            move_workspace_cmd = workspace: output:
-              "swaymsg '[workspace=\"^${workspace}$\"]' move workspace to output ${output}";
-            # Move workspace to BenQ RD280U
-            move_workspace_benq_cmd = workspace:
-              "BENQ_OUTPUT_NAME=$(${get_benq_output_name_cmd}); " +
-              move_workspace_cmd workspace "$BENQ_OUTPUT_NAME";
-          in [
+          profile.exec = [
             (move_workspace_benq_cmd "1")
             (move_workspace_benq_cmd "2")
             (move_workspace_benq_cmd "3")
