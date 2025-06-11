@@ -20,22 +20,6 @@ in
   # Enable CUDA support, needed for btop
   nixpkgs.config.cudaSupport = true;
 
-  # Patch for wezterm, see
-  # https://github.com/wezterm/wezterm/issues/6618
-  # https://github.com/wezterm/wezterm/pull/6508
-  nixpkgs.overlays = [
-    (final: prev: {
-      wezterm = prev.wezterm.overrideAttrs (_: prev: {
-        patches = prev.patches or [] ++ [
-          (final.fetchpatch {
-            url = "https://patch-diff.githubusercontent.com/raw/wez/wezterm/pull/6508.patch";
-            sha256 = "sha256-eMpg206tUw8m0Sz+3Ox7HQnejPsWp0VHVw169/Rt4do=";
-          }).outPath
-        ];
-      });
-    })
-  ];
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -195,7 +179,7 @@ in
   # VSCodium
   programs.vscode = {
     enable = true;
-    extensions =
+    profiles.default.extensions =
       let vscode-marketplace =
         vscode-extensions.extensions.${system}.vscode-marketplace;
       in [
@@ -213,7 +197,7 @@ in
         vscode-marketplace.thenuprojectcontributors.vscode-nushell-lang
         vscode-marketplace.tomoki1207.pdf
       ];
-    keybindings = [
+    profiles.default.keybindings = [
       # Disable search bar in file explorer
       {
         key = "ctrl+f";
@@ -276,7 +260,7 @@ in
     ];
     mutableExtensionsDir = false;
     package = pkgs.vscodium;
-    userSettings = {
+    profiles.default.userSettings = {
       "editor.fontFamily" =
         "'Fira Code', 'Font Awesome 6 Free', 'FiraCode Nerd Font'";
       "editor.fontLigatures" = true;
@@ -446,7 +430,7 @@ in
   # Zsh
   programs.zsh = {
   	enable = true;
-  	initExtra = "setopt hist_ignore_space";
+    initContent = "setopt hist_ignore_space";
     shellAliases = {
       gdiff = "git diff";
       glfm = "git ls-files --modified";

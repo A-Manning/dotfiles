@@ -4,13 +4,13 @@
       flake = false;
       url = "path:../.config/git/hooks/deny-fixme.sh";
     };
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad-config = {
       flake = false;
       url = "path:../.config/kmonad/config.kbd";  
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
@@ -96,7 +96,8 @@
                 fira-code
                 font-awesome
                 font-awesome_5
-                (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
+                nerd-fonts.fira-code
+                nerd-fonts.fira-mono
                 noto-fonts
                 noto-fonts-cjk-sans
                 noto-fonts-cjk-serif
