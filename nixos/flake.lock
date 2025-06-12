@@ -21,15 +21,14 @@
     "git-hook-deny-fixme": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-VDoZtMQxiFfEge+YXCjamnBjDeaogutKUUb30AxeUUU=",
         "path": "../.config/git/hooks/deny-fixme.sh",
         "type": "path"
       },
       "original": {
         "path": "../.config/git/hooks/deny-fixme.sh",
         "type": "path"
-      }
+      },
+      "parent": []
     },
     "home-manager": {
       "inputs": {
@@ -73,15 +72,14 @@
     "kmonad-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-KHrja4eqLPmpMoFp9V05GcHUrMSSHk+8yoiuazz+A4s=",
         "path": "../.config/kmonad/config.kbd",
         "type": "path"
       },
       "original": {
         "path": "../.config/kmonad/config.kbd",
         "type": "path"
-      }
+      },
+      "parent": []
     },
     "nixpkgs": {
       "locked": {
@@ -212,15 +210,14 @@
     "waybar-style": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-N3m7yYYlJyNVbe0UN6vCsiqxqs3NQQMDdu246IvcE4A=",
         "path": "./waybar-style.css",
         "type": "path"
       },
       "original": {
         "path": "./waybar-style.css",
         "type": "path"
-      }
+      },
+      "parent": []
     }
   },
   "root": "root",

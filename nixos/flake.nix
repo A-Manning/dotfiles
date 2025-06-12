@@ -15,7 +15,7 @@
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
       flake = false;
-      url = "path:./waybar-style.css"; 
+      url = "path:./waybar-style.css";
     };
   };
   outputs = {

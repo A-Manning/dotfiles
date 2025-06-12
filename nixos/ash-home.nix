@@ -273,7 +273,10 @@ in
       "rust-analyzer.procMacro.enable" = false;
       # Some issues with fontconfig
       "typst-lsp.exportPdf" = "never";
+      "window.customTitleBarVisibility" = "never";
+      "window.commandCenter" = false;
       "window.menuBarVisibility" = "toggle";
+      "window.titleBarStyle" = "native";
       "workbench.colorTheme" = "Activate UMBRA protocol";
       "[markdown]" = {
         "editor.wordWrap" = "wordWrapColumn";
@@ -376,7 +379,7 @@ in
         };
       };
     };
-    style = waybar-style;
+    style = builtins.readFile waybar-style;
   };
 
   # Wezterm
