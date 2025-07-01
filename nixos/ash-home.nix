@@ -188,6 +188,7 @@ in
         vscode-marketplace.bbenoist.nix
         vscode-marketplace.canadaduane.vscode-kmonad
         vscode-marketplace.fstarlang.fstar-vscode-assistant
+        vscode-marketplace.golang.go
         vscode-marketplace.juanblanco.solidity
         vscode-marketplace.max-ss.cyberpunk
         vscode-marketplace.myriad-dreamin.tinymist
