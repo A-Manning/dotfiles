@@ -83,6 +83,7 @@ in
     noto-fonts-cjk-serif
     nushell
     oh-my-zsh
+    pwvucontrol
     qbittorrent
     rustup
     sshfs

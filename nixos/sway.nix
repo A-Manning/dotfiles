@@ -66,7 +66,7 @@
       smartBorders = "off";
     };
     input = {
-      "76:613:Apple_Inc._Magic_Trackpad_2" = {
+      "76:613:Apple_Inc._Magic_Trackpad" = {
         click_method = "button_areas";
         natural_scroll = "enabled";
         pointer_accel = "0.666";
