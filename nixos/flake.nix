@@ -210,6 +210,18 @@
             # Needed for Udiskie
             services.udisks2.enable = true;
 
+            # Enable docker
+            virtualisation.docker = {
+              enable = true;
+              daemon.settings = {
+                data-root = "/home/ash/.local/share/docker-data-root";
+              };
+              rootless = {
+                enable = true;
+                setSocketVariable = true;
+              };
+            };
+
             xdg.portal = {
               enable = true;
               wlr.enable = true;
