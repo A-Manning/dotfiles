@@ -48,7 +48,8 @@
         modules = [
           # set zen kernel from unstable
           ({ config, pkgs, ... }:
-            let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+            # let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+            let myKernelPackages = pkgs.linuxPackages_zen;
             in {
               boot = {
                 kernelPackages = myKernelPackages;
