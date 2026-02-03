@@ -4,13 +4,13 @@
       flake = false;
       url = "path:../.config/git/hooks/deny-fixme.sh";
     };
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad-config = {
       flake = false;
       url = "path:../.config/kmonad/config.kbd";  
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     waybar-style = {
@@ -48,7 +48,8 @@
         modules = [
           # set zen kernel from unstable
           ({ config, pkgs, ... }:
-            let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+            # let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+            let myKernelPackages = pkgs.linuxPackages_zen;
             in {
               boot = {
                 kernelPackages = myKernelPackages;
@@ -114,7 +115,6 @@
             hardware.graphics = {
               enable = true;
               extraPackages = with pkgs; [
-                amdvlk
                 rocmPackages.clr.icd
               ];
             };

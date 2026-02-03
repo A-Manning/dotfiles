@@ -91,7 +91,7 @@ in
     telegram-desktop
     tree
     typst
-    typstfmt
+    typstyle
     udiskie
     unzip
     vscodium
