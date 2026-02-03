@@ -53,7 +53,7 @@
             in {
               boot = {
                 kernelPackages = myKernelPackages;
-                extraModulePackages = [ myKernelPackages.nvidia_x11_beta ];
+                extraModulePackages = [ myKernelPackages.nvidia_x11_production ];
               };
             }
           )
@@ -131,7 +131,7 @@
               # https://discourse.nixos.org/t/nvidia-the-bane-of-my-existence/51524/3
               nvidiaSettings = false;
               open = true;
-              package = config.boot.kernelPackages.nvidiaPackages.beta;
+              package = config.boot.kernelPackages.nvidiaPackages.production;
 
               prime = {
 		            # Make sure to use the correct Bus ID values for your system!
