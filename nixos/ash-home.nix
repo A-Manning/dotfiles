@@ -142,25 +142,25 @@ in
   # Git
   programs.git = {
     enable = true;
-    aliases = {
-      commit-utc = "!git commit --date=\"$(date --utc +%Y-%m-%dT%H:%M:%S%z)\"";
-      rebase-ic = "-c core.editor='codium -n --wait' rebase -i";
-    };
-    extraConfig = {
-      core = {
-        sshCommand = "ssh -i ~/.ssh/github/a-manning_ed25519_sk";
-      };
-      merge = {
-        renameLimit = 4096;
-      };
-    };
     hooks = {
       pre-commit = git-hook-deny-fixme;
     };
     includes = [
       { condition = "gitdir:~/Dev/"; path = "~/Dev/.gitconfig"; }
     ];
-    userName = "Ash Manning";
+    settings = {
+      alias = {
+        commit-utc = "!git commit --date=\"$(date --utc +%Y-%m-%dT%H:%M:%S%z)\"";
+        rebase-ic = "-c core.editor='codium -n --wait' rebase -i";
+      };
+      core = {
+        sshCommand = "ssh -i ~/.ssh/github/a-manning_ed25519_sk";
+      };
+      merge = {
+        renameLimit = 4096;
+      };
+      user.name = "Ash Manning";
+    };
   };
 
   # Micro
