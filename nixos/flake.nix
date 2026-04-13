@@ -42,21 +42,20 @@
             inherit system;
             config = pkgs.config;
           };
+          # set zen kernel from unstable
+          # let myKernelPackages = pkgs-unstable.linuxPackages_zen;
+          # let myKernelPackages = pkgs.linuxPackages_zen;
+          myKernelPackages = pkgs.linuxPackages_6_19;
         in
         nixpkgs.lib.nixosSystem {
 
         modules = [
-          # set zen kernel from unstable
-          ({ config, pkgs, ... }:
-            # let myKernelPackages = pkgs-unstable.linuxPackages_zen;
-            let myKernelPackages = pkgs.linuxPackages_zen;
-            in {
-              boot = {
-                kernelPackages = myKernelPackages;
-                extraModulePackages = [ myKernelPackages.nvidia_x11_beta ];
-              };
-            }
-          )
+          {
+            boot = {
+              kernelPackages = myKernelPackages;
+              extraModulePackages = [ myKernelPackages.nvidia_x11_production ];
+            };
+          }
 
           # Import old configuration
           ./configuration.nix
@@ -77,7 +76,7 @@
               pkgs.yubico-pam
   	          pkgs.zsh
             ] ++ [
-              pkgs-unstable.linuxPackages_zen.nvidia_x11_beta
+              myKernelPackages.nvidia_x11_production
             ];
 
             # Fonts
@@ -130,7 +129,7 @@
               # https://discourse.nixos.org/t/nvidia-the-bane-of-my-existence/51524/3
               nvidiaSettings = false;
               open = true;
-              package = config.boot.kernelPackages.nvidiaPackages.beta;
+              package = config.boot.kernelPackages.nvidiaPackages.production;
 
               prime = {
 		            # Make sure to use the correct Bus ID values for your system!
