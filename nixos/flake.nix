@@ -45,7 +45,8 @@
           # set zen kernel from unstable
           # let myKernelPackages = pkgs-unstable.linuxPackages_zen;
           # let myKernelPackages = pkgs.linuxPackages_zen;
-          myKernelPackages = pkgs.linuxPackages_6_19;
+          # myKernelPackages = pkgs.linuxPackages_6_19;
+          myKernelPackages = pkgs.linuxPackages_zen;
         in
         nixpkgs.lib.nixosSystem {
 
