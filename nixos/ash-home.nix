@@ -64,6 +64,7 @@ in
     flameshot
     font-awesome
     font-awesome_5
+    font-awesome_6
     git
     gocryptfs
     google-chrome
