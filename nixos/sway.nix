@@ -219,9 +219,10 @@
     set $sup Mod4
   '';
   extraOptions = [ "--unsupported-gpu" ];
+  # Symlink for WLR_DRM_DEVICES gets created by a udev rule in flake.nix
   extraSessionCommands = ''
     export XDG_CURRENT_DESKTOP=sway
-    export WLR_DRM_DEVICES=/dev/dri/card1
+    export WLR_DRM_DEVICES=/dev/dri/igpu1
   '';
   # package = pkgs.swayfx;
   wrapperFeatures.gtk = true;

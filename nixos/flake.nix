@@ -47,6 +47,9 @@
           # let myKernelPackages = pkgs.linuxPackages_zen;
           # myKernelPackages = pkgs.linuxPackages_6_19;
           myKernelPackages = pkgs.linuxPackages_zen;
+          # Make sure to use the correct Bus ID values for your system!
+		      amdgpuBusId = "PCI:198:0:0";
+		      nvidiaBusId = "PCI:1:0:0";
         in
         nixpkgs.lib.nixosSystem {
 
@@ -67,7 +70,7 @@
           # Kmonad module
           kmonad.nixosModules.default
 
-          ({ config, pkgs, ... }: {
+          ({ config, lib, pkgs, ... }: {
 
             environment.systemPackages = [
               pkgs.exfat
@@ -130,12 +133,12 @@
               # https://discourse.nixos.org/t/nvidia-the-bane-of-my-existence/51524/3
               nvidiaSettings = false;
               open = true;
-              package = config.boot.kernelPackages.nvidiaPackages.production;
+              package = myKernelPackages.nvidiaPackages.production;
 
               prime = {
 		            # Make sure to use the correct Bus ID values for your system!
-		            amdgpuBusId = "PCI:198:0:0";
-		            nvidiaBusId = "PCI:1:0:0";
+		            amdgpuBusId = amdgpuBusId;
+		            nvidiaBusId = nvidiaBusId;
                 offload = {
                   enable = true;
                   enableOffloadCmd = true;
@@ -206,6 +209,36 @@
                 device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
               };
             };
+
+            # Set up a udev rule to create named symlinks for the pci paths.
+            #
+            # This is necessary because wlroots splits the DRM_DEVICES on
+            # `:`, which is part of the pci path.
+            # Adapted from https://github.com/TLATER/dotfiles/blob/master/nixos-modules/nvidia/prime.nix
+            services.udev.packages = 
+              let
+                pciPath =
+                  xorgBusId:
+                  let
+                    components = lib.drop 1 (lib.splitString ":" xorgBusId);
+                    toHex = i: lib.toLower (lib.toHexString (lib.toInt i));
+
+                    domain = "0000"; # Apparently the domain is practically always set to 0000
+                    bus = lib.fixedWidthString 2 "0" (toHex (builtins.elemAt components 0));
+                    device = lib.fixedWidthString 2 "0" (toHex (builtins.elemAt components 1));
+                    function = builtins.elemAt components 2; # The function is supposedly a decimal number
+                  in
+                  "dri/by-path/pci-${domain}:${bus}:${device}.${function}-card";
+
+                igpuPath = pciPath amdgpuBusId;
+                dgpuPath = pciPath nvidiaBusId;
+              in
+              lib.singleton (
+                pkgs.writeTextDir "lib/udev/rules.d/61-gpu-offload.rules" ''
+                  SYMLINK=="${igpuPath}", SYMLINK+="dri/igpu1"
+                  SYMLINK=="${dgpuPath}", SYMLINK+="dri/dgpu1"
+                ''
+              );
 
             # Needed for Udiskie
             services.udisks2.enable = true;
