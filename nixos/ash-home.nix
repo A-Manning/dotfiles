@@ -269,6 +269,7 @@ in
       "editor.fontLigatures" = true;
       "editor.fontSize" = 16;
       "editor.rulers" = [ 79 ];
+      "files.insertFinalNewline" = true;
       "rust-analyzer.imports.merge.glob" = false;
       "rust-analyzer.inlayHints.chainingHints.enable" = false;
       "rust-analyzer.inlayHints.parameterHints.enable" = false;
