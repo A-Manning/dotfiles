@@ -38,8 +38,11 @@ in
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=1;
     };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme=1;
+    gtk4 = {
+      extraConfig = {
+        gtk-application-prefer-dark-theme=1;
+      };
+      theme = null;
     };
     /*
     iconTheme = {
@@ -57,6 +60,7 @@ in
     appimage-run
     brightnessctl
     btop
+    crosspipe
     direnv
     discord
     fira
@@ -68,15 +72,15 @@ in
     git
     gocryptfs
     google-chrome
-    helvum
     htop
+    # provides neowofetch
+    hyfetch
     jless
     jq
     kanshi
     libreoffice
-    melonDS
+    melonds
     mpv
-    neofetch
     networkmanagerapplet
     nix-prefetch-git
     noto-fonts
@@ -179,7 +183,7 @@ in
   };
 
   # VSCodium
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     profiles.default.extensions =
       let vscode-marketplace =
@@ -262,7 +266,6 @@ in
       }
     ];
     mutableExtensionsDir = false;
-    package = pkgs.vscodium;
     profiles.default.userSettings = {
       "editor.fontFamily" =
         "'Fira Code', 'Font Awesome 6 Free', 'FiraCode Nerd Font'";
@@ -361,7 +364,7 @@ in
         wireplumber = {
           format = " {volume}%";
           format-muted = " MUTE";
-          on-click = "helvum";
+          on-click = "crosspipe";
           on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
         layer = "bottom";
