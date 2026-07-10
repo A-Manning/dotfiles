@@ -30,6 +30,7 @@ in
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     cursorTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -105,6 +106,7 @@ in
     wlr-randr
     wmenu
     wttrbar
+    xdg-desktop-portal
     zstd
   ];
 
@@ -440,7 +442,12 @@ in
   # Zsh
   programs.zsh = {
   	enable = true;
-    initContent = "setopt hist_ignore_space";
+    initContent = ''
+      setopt hist_ignore_space
+
+      # un-alias unwanted aliases from oh-my-zsh's git plugin
+      unalias gsta
+    '';
     shellAliases = {
       gdiff = "git diff";
       glfm = "git ls-files --modified";
@@ -581,4 +588,22 @@ in
 
   # Enable Sway
   wayland.windowManager.sway = sway-config;
+
+  xdg.portal = {
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      sway = {
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      };
+    };
+    enable = true;
+    extraPortals = with pkgs; [
+      # gtk portal needed to make gtk apps happy
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+  };
 }

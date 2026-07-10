@@ -72,16 +72,23 @@
 
           ({ config, lib, pkgs, ... }: {
 
-            environment.systemPackages = [
-              pkgs.exfat
-              pkgs.micro
-  	          pkgs.tmux
-  	          pkgs.wl-clipboard
-              pkgs.yubico-pam
-  	          pkgs.zsh
-            ] ++ [
-              myKernelPackages.nvidia_x11_production
-            ];
+            environment = {
+              # Needed for xdg desktop portals
+              pathsToLink = [
+                "/share/applications"
+                "/share/xdg-desktop-portal"
+              ];
+              systemPackages = [
+                pkgs.exfat
+                pkgs.micro
+                pkgs.tmux
+                pkgs.wl-clipboard
+                pkgs.yubico-pam
+                pkgs.zsh
+              ] ++ [
+                myKernelPackages.nvidia_x11_production
+              ];
+            };
 
             # Fonts
             fonts = {
@@ -254,14 +261,6 @@
             #    setSocketVariable = true;
             #  };
             #};
-
-            xdg.portal = {
-              enable = true;
-              wlr.enable = true;
-              # gtk portal needed to make gtk apps happy
-              # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-            };
-
           })  
         ];
         system = system;  
