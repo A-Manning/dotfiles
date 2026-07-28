@@ -145,6 +145,9 @@
   ];
 
   # Enable programs
+
+  # Needed for python/uv
+  programs.nix-ld.enable = true;
   programs.steam.enable = true;
   programs.sway = {
     enable = true;
