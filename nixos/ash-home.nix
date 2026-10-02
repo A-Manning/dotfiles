@@ -89,6 +89,9 @@ in
     noto-fonts-cjk-serif
     nushell
     oh-my-zsh
+    # needed in order for gpg keygen to work, see
+    # https://discourse.nixos.org/t/cant-get-gnupg-to-work-no-pinentry/15373/36
+    pinentry-curses
     pwvucontrol
     qbittorrent
     rustup
@@ -168,6 +171,12 @@ in
       };
       user.name = "Ash Manning";
     };
+  };
+
+  # gpg
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg";
   };
 
   # Micro
@@ -496,6 +505,12 @@ in
           filenamePattern = "%F %H-%M-%S";
         };
       };
+    };
+
+    # required in order for gpg keygen to work
+    gpg-agent = {
+      enable = true;
+      pinentry.package = pkgs.pinentry-curses;
     };
 
     kanshi = {
