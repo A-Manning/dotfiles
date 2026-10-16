@@ -1,5 +1,6 @@
 {
   config,
+  git-checkout-remote,
   git-hook-deny-fixme,
   lib,
   pkgs,
@@ -160,6 +161,7 @@ in
     ];
     settings = {
       alias = {
+        checkout-remote = "!${git-checkout-remote}";
         commit-utc = "!git commit --date=\"$(date --utc +%Y-%m-%dT%H:%M:%S%z)\"";
         rebase-ic = "-c core.editor='codium -n --wait' rebase -i";
       };
@@ -207,6 +209,39 @@ in
         read = {
           "local/**" = "deny";
           "**/local/**" = "deny";
+        };
+      };
+      plugin = [
+        "${pkgs.opencode-claude-auth}/lib/node_modules/opencode-claude-auth"
+      ];
+      provider = {
+        openrouter = {
+          models = {
+            "z-ai/glm-5.3" = {
+              options = {
+                provider = {
+                  only = ["sail-research/us"];
+                  allow_fallbacks = false;
+                };
+              };
+            };
+            "moonshotai/kimi-k3" = {
+              options = {
+                provider = {
+                  only = ["wafer/us"];
+                  allow_fallbacks = false;
+                };
+              };
+            };
+            "xiaomi/mimo-v2.6-pro" = {
+              options = {
+                provider = {
+                  only = ["deepinfra/fp8"];
+                  allow_fallbacks = false;
+                };
+              };
+            };
+          };
         };
       };
     };
