@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "git-checkout-remote": {
+      "flake": false,
+      "locked": {
+        "path": "../scripts/git/git-checkout-remote.sh",
+        "type": "path"
+      },
+      "original": {
+        "path": "../scripts/git/git-checkout-remote.sh",
+        "type": "path"
+      },
+      "parent": []
+    },
     "git-hook-deny-fixme": {
       "flake": false,
       "locked": {
@@ -145,6 +157,7 @@
     },
     "root": {
       "inputs": {
+        "git-checkout-remote": "git-checkout-remote",
         "git-hook-deny-fixme": "git-hook-deny-fixme",
         "home-manager": "home-manager",
         "kmonad": "kmonad",

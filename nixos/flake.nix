@@ -1,5 +1,9 @@
 {
   inputs = {
+    git-checkout-remote = {
+      flake = false;
+      url = "path:../scripts/git/git-checkout-remote.sh";
+    };
     git-hook-deny-fixme = {
       flake = false;
       url = "path:../.config/git/hooks/deny-fixme.sh";
@@ -20,6 +24,7 @@
   };
   outputs = {
     self,
+    git-checkout-remote,
     git-hook-deny-fixme,
     home-manager,
     kmonad,
@@ -159,6 +164,7 @@
                 (import ./ash-home.nix {
                   inherit
                     config
+                    git-checkout-remote
                     git-hook-deny-fixme
                     lib
                     pkgs
