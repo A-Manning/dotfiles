@@ -193,6 +193,25 @@ in
     enable = true;
   };
 
+  # Opencode
+  programs.opencode = {
+    enable = true;
+    settings = {
+      autoupdate = false;
+      permission = {
+        "*" = "ask";
+        edit = {
+          "local/**" = "deny";
+          "**/local/**" = "deny";
+        };
+        read = {
+          "local/**" = "deny";
+          "**/local/**" = "deny";
+        };
+      };
+    };
+  };
+
   # VSCodium
   programs.vscodium = {
     enable = true;
