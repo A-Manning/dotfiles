@@ -163,6 +163,13 @@
   #   enableSSHSupport = true;
   # };
 
+  # Blacklist eMudhra certs
+  security.pki.caCertificateBlacklist = [
+    "emSign ECC Root CA - G3"
+    # NSS's label for Sectigo "AAA Certificate Services"
+    "Comodo AAA Services root"
+  ];
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
